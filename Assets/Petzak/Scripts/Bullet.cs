@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Petzak
 {
-    public float speed = 10;
-    public float lifeSpan = 3;
-    public float age = 0;
-    private Vector3 velocity = Vector3.zero;
-
-    void Start()
+    public class Bullet : MonoBehaviour
     {
-        velocity = transform.right * speed;
-    }
+        public float speed = 10;
+        public float lifeSpan = 3;
+        public float age = 0;
+        private Vector3 velocity = Vector3.zero;
 
-    void Update()
-    {
-        age += Time.deltaTime;
-        if (age >= lifeSpan)
-            Destroy(gameObject);
-        transform.position += velocity * Time.deltaTime;
+        void Start() {
+            velocity = transform.right * speed;
+        }
+
+        void Update() {
+            age += Time.deltaTime;
+            if (age >= lifeSpan)
+                Destroy(gameObject);
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 }
