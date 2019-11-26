@@ -11,6 +11,9 @@ public class Game : MonoBehaviour {
     static public void GameOver() {
         // TODO: show the "game over" screen
     }
+    static public void GotoNextLevel() {
+        // TODO: this
+    }
     
 
     float prePauseTimescale = 1;
