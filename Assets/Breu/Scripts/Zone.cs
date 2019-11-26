@@ -6,8 +6,8 @@ namespace Breu {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "",
-            creator = "",
+            zoneName = "Squishy bits",
+            creator = "Breu",
             level = "BreuScene"
         };
 
