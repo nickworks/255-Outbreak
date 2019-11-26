@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+
+namespace Jennings
 {
-    public float speed = 10;
-    public float lifespan = 3;
-
-    float age = 0;
-
-    Vector3 velocity = Vector3.zero;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Bullet : MonoBehaviour
     {
-        velocity = transform.right * speed;
-    }
+        public float speed = 10;
+        public float lifespan = 3;
 
-    // Update is called once per frame
-    void Update()
-    {
-        age += Time.deltaTime;
-        if (age >= lifespan) Destroy(gameObject);
-        transform.position += velocity * Time.deltaTime;
+        float age = 0;
+
+        Vector3 velocity = Vector3.zero;
+
+        // Start is called before the first frame update
+        void Start() {
+            velocity = transform.right * speed;
+        }
+
+        // Update is called once per frame
+        void Update() {
+            age += Time.deltaTime;
+            if (age >= lifespan) Destroy(gameObject);
+            transform.position += velocity * Time.deltaTime;
+        }
     }
 }
