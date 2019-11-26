@@ -10,12 +10,14 @@ namespace Myles
         {
             PeaShooter,
             AutoRifle,
-            TripleShot
+            TripleShot,
+            RocketLauncher
 
         }
 
 
         public GameObject basicBullet;
+        public GameObject rocket;
         public Transform projectileSpawnPoint;
         public WeaponType currentWeapon = WeaponType.PeaShooter;
 
@@ -47,6 +49,9 @@ namespace Myles
                 case WeaponType.TripleShot:
                     ShootTripleShot();
                     break;
+                case WeaponType.RocketLauncher:
+                    ShootRocketLauncher();
+                    break;
             }
 
         }
@@ -56,12 +61,13 @@ namespace Myles
 
             if (!Input.GetButtonDown("Fire1")) return;
 
+
             Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
         }
 
         private void ShootAutoRifle()
         {
-            if (!Input.GetButtonDown("Fire1")) return;
+            
             if (cooldownUntilNextBullet > 0) return;
 
             Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
@@ -80,7 +86,14 @@ namespace Myles
             Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw + spread, 0));
             
         }
+        private void ShootRocketLauncher()
+        {
 
+            if (cooldownUntilNextBullet > 0) return;
+
+            Instantiate(rocket, projectileSpawnPoint.position, transform.rotation);
+            cooldownUntilNextBullet = 5f;
+        }
 
     }
 }

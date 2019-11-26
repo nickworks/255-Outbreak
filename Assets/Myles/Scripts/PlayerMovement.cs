@@ -13,7 +13,8 @@ namespace Myles
 
         void Start()
         {
-            cam = GameObject.FindObjectOfType<Camera>();
+            //cam = GameObject.FindObjectOfType<Camera>();
+            cam = Camera.main;
 
         }
 
@@ -22,30 +23,32 @@ namespace Myles
         {
             Move();
 
-            if(useMouseForAiming) RotateWithMouse();
+            if (useMouseForAiming) RotateWithMouse();
             else RotateWithAnalogStick();
         }
 
         private void RotateWithMouse()
         {
-           if (cam == null) {
+            if (cam == null)
+            {
 
-            Debug.LogError("There's no camera to do a raycast from...");
-            return;
+                Debug.LogError("There's no camera to do a raycast from...");
+                return;
             }
 
-             Plane plane = new Plane(Vector3.up, transform.position);
+            Plane plane = new Plane(Vector3.up, transform.position);
 
-             Ray ray = camScreenPointToRay(Input.mousePosition);
-             if(plane.Raycast(ray, out float dis)) {
-             Vector3 mousePos = Ray.GetPoint(dis);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (plane.Raycast(ray, out float dis))
+            {
+                Vector3 mousePos = ray.GetPoint(dis);
 
-              Vector3 vectorToMousePos = mousePos - transform.position;
+                Vector3 vectorToMousePos = mousePos - transform.position;
 
-    float radians = Mathf.Atan2(vectorToMousePos.z, vectorToMousePosition);
-    float degress = radians * 180 / Mathf.PI;
-    transform.eulerAngles = new Vector3(0, -degrees, 0);
-           }
+                float radians = Mathf.Atan2(vectorToMousePos.z, vectorToMousePos.x);
+                float degrees = radians * 180 / Mathf.PI;
+                transform.eulerAngles = new Vector3(0, -degrees, 0);
+            }
         }
 
 
