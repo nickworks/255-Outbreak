@@ -7,10 +7,10 @@ namespace Takens
     {
        public enum WeaponType
         {
-            SingleShot, 
-            FullAuto,
-            Shotgun,
-            Boomerang
+            SingleShot, //0
+            FullAuto,   //1
+            Shotgun,    //2
+            Boomerang   //3
         }
 
         public WeaponType currentWeapon = WeaponType.SingleShot;
@@ -19,6 +19,11 @@ namespace Takens
         public GameObject boomerang;
 
         float cooldownUntilNextBullet = 0;
+
+        /// <summary>
+        /// Whatever our "CycleWeapon" axis value was one frame ago.
+        /// </summary>
+        int previousCycleDirection = 0;
 
         // Start is called before the first frame update
         void Start()
@@ -29,9 +34,38 @@ namespace Takens
         // Update is called once per frame
         void Update()
         {
+            CycleWeapons();
+
             if(cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
             if (Input.GetButton("Fire1"))
                 Shoot();
+        }
+
+       void CycleWeapons()
+        {
+ 
+            float cycleInput = Input.GetAxisRaw("CycleWeapons");
+
+
+            int cycleDirection = 0;
+            if (cycleInput < 0) cycleDirection = -1;
+            if (cycleInput > 0) cycleDirection = 1;
+
+            if (previousCycleDirection == 0)
+            {
+
+                int index = (int)currentWeapon + cycleDirection;
+
+
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
+
+                if (index < 0) index = max;
+                if (index > max) index = 0;
+                currentWeapon = (WeaponType)index;
+
+                
+            }
+            previousCycleDirection = cycleDirection;
         }
 
         void Shoot()

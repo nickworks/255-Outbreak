@@ -8,20 +8,44 @@ namespace Takens
 
         public float speed = 5f;
         public bool useMouseForAiming = true;
+        CharacterController pawn;
         Camera cam;
 
         void Start()
         {
             //cam = GameObject.FindObjectOfType<Camera>();
             cam = Camera.main;
+            pawn = GetComponent<CharacterController>();
         }
 
+        void FixedUpdate()
+        {
+            Move();
+        }
 
         void Update()
         {
-            Move();
-            if(!useMouseForAiming) RotateWithAnalogStick();
+
+            DetectInputMethod();
+            
+            if (!useMouseForAiming) RotateWithAnalogStick();
             else RotateWithMouse();
+        }
+
+        private void DetectInputMethod()
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+            if (x != 0 || y != 0)
+            {
+                useMouseForAiming = true;
+            }
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+            Vector2 input = new Vector2(h, v);
+            float threshold = .25f;
+            if (input.sqrMagnitude > threshold * threshold) useMouseForAiming = false;
         }
 
         private void RotateWithMouse(){
@@ -65,7 +89,9 @@ namespace Takens
             float v = Input.GetAxisRaw("Vertical");
             Vector3 dir = new Vector3(h, 0, v).normalized;
 
-            transform.position += dir * speed * Time.deltaTime;
+            Vector4 delta = dir * speed * Time.fixedDeltaTime;
+
+            pawn.Move(delta);
         }
     }
 }

@@ -22,8 +22,9 @@ namespace Takens {
         // Update is called once per frame
         void Update()
         {
+ 
             model.transform.RotateAroundLocal(transform.up, 15f * Time.deltaTime);
-            velocity += -transform.right * .3f;
+            velocity += -transform.right * 35f * Time.deltaTime;
             age += Time.deltaTime;
             
             if (age >= lifespan) Destroy(gameObject);
