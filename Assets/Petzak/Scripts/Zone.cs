@@ -6,8 +6,8 @@ namespace Petzak {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "",
-            creator = "",
+            zoneName = "The Fun Zone",
+            creator = "Alec Petzak",
             level = "PetzakScene"
         };
 
