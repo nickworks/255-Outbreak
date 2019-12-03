@@ -126,5 +126,11 @@ namespace Caughman
             Vector3 delta = dir * speed * Time.deltaTime;
             pawn.Move(delta);
         }
+
+        void Die()
+        {
+            print("Player is dead");
+            //Game.GameOver();
+        }
     }
 }

@@ -17,6 +17,8 @@ namespace Caughman
         public float lifespan = 3;
 
         public float damageAmount = 20;
+
+        public Transform bulletShooter;
         /// <summary>
         /// how long bullet has been on screen
         /// </summary>
@@ -39,6 +41,9 @@ namespace Caughman
 
         void OnTriggerEnter(Collider collider)
         {
+
+            if (collider.transform == bulletShooter) return;
+
             DamageTaker dt = collider.GetComponent<DamageTaker>();
             if (dt != null)
             {

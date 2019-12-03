@@ -21,6 +21,14 @@ namespace Caughman
         public Vector3 velocity = Vector3.zero;
         public float deceleration = 5;
         public float acceleration = 10;
+        /// <summary>
+        /// Whether the Boss Has Been Killed
+        /// </summary>
+        private bool bossDead = false;
+        /// <summary>
+        /// Delay Before Loading Next Level
+        /// </summary>
+        private float delayBeforeNextLevel = 10;
 
         void Start()
         {
@@ -35,6 +43,17 @@ namespace Caughman
 
             velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * deceleration);
             transform.position += velocity * Time.deltaTime;
+
+            if(bossDead == true)
+            {
+                delayBeforeNextLevel--;
+            }
+
+            if (delayBeforeNextLevel<= 0)
+            {
+                NextLevel();
+            }
+            
         }//End Update
 
         private void ChangeState(EnemyState newState)
@@ -56,12 +75,22 @@ namespace Caughman
 
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
 
-            Instantiate(bulletPrefab, transform.position, rot);
+            Bullet bill = Instantiate(bulletPrefab, transform.position, rot);
+            bill.bulletShooter = transform;
         }
 
         void Die()
         {
-            print("I am Dead");
+            print("Boss is dead");
+            bossDead = true;
+            //Game.GoToNextLevel();
+
+        }
+
+        void NextLevel()
+        {
+            //Game.GoToNextLevel();
+            print("Going to Next Level now");
         }
     }//End EnemyController
 }
