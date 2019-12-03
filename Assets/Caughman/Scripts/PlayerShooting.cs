@@ -11,9 +11,9 @@ namespace Caughman
         /// </summary>
        public enum Weapontype
         {
-            PeaShooter,
-            AutoRifle,
-            TripleShot
+            PeaShooter,//0
+            AutoRifle,//1
+            TripleShot//2
         }
 
         /// <summary>
@@ -37,9 +37,34 @@ namespace Caughman
         // Update is called once per frame
         void Update()
         {
+            CycleWeapons();
+
             if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
             if (Input.GetButton("Fire1")) Shoot();
         }//End Update
+
+        private void CycleWeapons()
+        {
+
+           bool wantsToSwitch = Input.GetButtonDown("CycleWeapons");
+
+            if (!wantsToSwitch) return;
+
+            float cycle = Input.GetAxisRaw("CycleWeapons");
+         
+            int index = (int)currentWeapon;
+
+            if (cycle > 0) index++;
+            if (cycle < 0) index--;
+
+            int max = System.Enum.GetNames(typeof(Weapontype)).Length-1;
+
+            if (index < 0) index = max;
+            if (index > max) index = 0;
+
+            currentWeapon = (Weapontype)index;
+            
+        }
 
         void Shoot()
         {
