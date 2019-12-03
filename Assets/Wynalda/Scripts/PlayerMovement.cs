@@ -39,7 +39,7 @@ namespace Wynalda
             float v = Input.GetAxisRaw("Vertical"); //keyboard movement
 
             Vector3 dir = new Vector3(h, 0, v).normalized;
-            Vector4 delta = dir * speed * Time.fixedDeltaTime;
+            Vector3 delta = dir * speed * Time.fixedDeltaTime;
 
             pawn.Move(delta);
         }
