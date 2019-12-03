@@ -9,9 +9,9 @@ namespace Pattison
 
         public enum WeaponType
         {
-            PeaShooter,
-            AutoRifle,
-            TripleShot
+            PeaShooter, // 0 
+            AutoRifle,  // 1
+            TripleShot  // 2
         }
 
 
@@ -21,7 +21,10 @@ namespace Pattison
 
 
         float cooldownUntilNextBullet = 0;
-
+        /// <summary>
+        /// Whatever our "CycleWeapon" axis value was one frame ago.
+        /// </summary>
+        int previousCycleDir = 0;
 
 
         void Start() {
@@ -31,10 +34,36 @@ namespace Pattison
         
         void Update() {
 
-            if(cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
+            CycleWeapons();
 
+            if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
             if (Input.GetButton("Fire1")) Shoot();
         }
+
+        private void CycleWeapons() {
+
+            float cycleInput = Input.GetAxisRaw("CycleWeapons");
+
+            int cycleDir = 0;
+            if (cycleInput < 0) cycleDir = -1;
+            if (cycleInput > 0) cycleDir = 1;
+
+
+            if (previousCycleDir == 0) { // only change weapons if we WEREN'T trying to change weapons last frame
+
+                int index = (int)currentWeapon + cycleDir;
+
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
+
+                if (index < 0) index = max;
+                if (index > max) index = 0;
+
+                currentWeapon = (WeaponType)index;
+            }
+
+            previousCycleDir = cycleDir;
+        }
+
         void Shoot() {
             switch (currentWeapon) {
                 case WeaponType.PeaShooter: ShootPeaShooter(); break;

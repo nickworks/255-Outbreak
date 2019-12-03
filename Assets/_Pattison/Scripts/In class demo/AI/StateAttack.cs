@@ -24,7 +24,7 @@ namespace Pattison
 
             //////////////////  BEHAVIOR:
 
-            Debug.Log("I'm attacking...");
+            //Debug.Log("I'm attacking...");
 
 
             timeUntilNextShot -= Time.deltaTime;

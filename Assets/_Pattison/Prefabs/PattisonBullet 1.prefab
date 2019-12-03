@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2641026702659908600}
   - component: {fileID: 1607888500448570299}
   m_Layer: 0
-  m_Name: PattisonBullet
+  m_Name: PattisonBullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,4 +107,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifespan: 3
-  damageAmount: 20
+  damageAmount: 25

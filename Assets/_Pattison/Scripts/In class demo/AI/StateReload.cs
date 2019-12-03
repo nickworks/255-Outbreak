@@ -23,7 +23,7 @@ namespace Pattison
 
             ///////////// BEHAVIOR:
 
-            Debug.Log("I'm reloading...");
+            //Debug.Log("I'm reloading...");
 
 
             timeLeftUntilReloaded -= Time.deltaTime;

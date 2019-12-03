@@ -9,6 +9,7 @@ namespace Pattison
 
 
         public Bullet bulletPrefab;
+        public Bullet otherPrefab;
 
 
         #region State Stuff
@@ -54,13 +55,17 @@ namespace Pattison
         public void ShootProjectile() {
 
             Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
-
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
 
-            Instantiate(bulletPrefab, transform.position, rot);
-
+            Bullet bill = Instantiate(bulletPrefab, transform.position, rot);
+            bill.bulletShooter = transform;
         }
 
+
+
+        void Die() {
+            print("ahhhhhhhh! I'm dying... :(");
+        }
 
     }
 }

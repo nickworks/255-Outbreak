@@ -14,7 +14,7 @@ namespace Pattison
 
             /////// BEHAVIOR:
 
-            Debug.Log("I'm idling...");
+            //Debug.Log("I'm idling...");
 
 
             /////// TRANSITIONS TO OTHER STATES:
