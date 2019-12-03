@@ -10,7 +10,7 @@ namespace Wynalda
         {
             /////////// BEHAVIOR:
 
-            Debug.Log("im pursuing...");
+          //  Debug.Log("im pursuing...");
 
             //move towards the player...
             Vector3 disToPlayer = enemy.attackTarget.position - enemy.transform.position;

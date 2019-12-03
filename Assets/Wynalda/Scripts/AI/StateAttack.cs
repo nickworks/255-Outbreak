@@ -23,7 +23,7 @@ namespace Wynalda
         {
             ///////// BEHAVIOUR
 
-            Debug.Log("attacking...");
+           // Debug.Log("attacking...");
 
             timeUntilNextShot -= Time.deltaTime;
 

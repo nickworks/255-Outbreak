@@ -20,7 +20,7 @@ namespace Wynalda
         {
             ////////// BEHAVIOUR
 
-            Debug.Log("Im reloading...");
+            //Debug.Log("Im reloading...");
 
             timeLeftUntilReloaded -= Time.deltaTime;
 

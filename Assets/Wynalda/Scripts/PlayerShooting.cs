@@ -14,7 +14,10 @@ namespace Wynalda
             TripleShot
         }
 
-        public GameObject basicBullet;
+        public GameObject tripleBullet;
+        public GameObject peaBullet;
+        public GameObject autoBullet;
+
         public Transform projectileSpawnPoint;
         public WeaponType currentWeapon = WeaponType.PeaShooter;
 
@@ -73,12 +76,12 @@ namespace Wynalda
         {
             if (!Input.GetButtonDown("Fire1")) return;
 
-            Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
+            Instantiate(peaBullet, projectileSpawnPoint.position, transform.rotation);
         }
         private void ShootAutoRifle()
         {
             if (cooldownUntilNextBullet > 0) return;
-            Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
+            Instantiate(autoBullet, projectileSpawnPoint.position, transform.rotation);
             cooldownUntilNextBullet = 0.1f;
         }
         private void ShootTripleShot()
@@ -89,9 +92,9 @@ namespace Wynalda
 
             float spread = 10;
 
-            Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
-            Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw-spread, 0));
-            Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw+spread, 0));
+            Instantiate(tripleBullet, projectileSpawnPoint.position, transform.rotation);
+            Instantiate(tripleBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw-spread, 0));
+            Instantiate(tripleBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw+spread, 0));
 
 
         }

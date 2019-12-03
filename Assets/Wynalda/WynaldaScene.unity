@@ -247,7 +247,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3bdc2a4e5bc594a8f8a62533c4cad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBullet: {fileID: 3673095672429040704, guid: 5a10c6b23d4511545a07fb9e57eba473,
+  tripleBullet: {fileID: 3673095672429040704, guid: 81c5db612a176b44a869eb2fc32959a1,
+    type: 3}
+  peaBullet: {fileID: 3673095672429040704, guid: 5a10c6b23d4511545a07fb9e57eba473,
+    type: 3}
+  autoBullet: {fileID: 3673095672429040704, guid: 703b5ef342a4730479a53903a79180b5,
     type: 3}
   projectileSpawnPoint: {fileID: 1579107814}
   currentWeapon: 2
@@ -662,6 +666,8 @@ GameObject:
   - component: {fileID: 1595748465}
   - component: {fileID: 1595748464}
   - component: {fileID: 1595748468}
+  - component: {fileID: 1595748469}
+  - component: {fileID: 1595748470}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -762,6 +768,35 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   deceleration: 10
   acceleration: 3
+--- !u!114 &1595748469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595748463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf915d199ee41f41b059b6a2b184e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!54 &1595748470
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595748463}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1646449028
 GameObject:
   m_ObjectHideFlags: 0

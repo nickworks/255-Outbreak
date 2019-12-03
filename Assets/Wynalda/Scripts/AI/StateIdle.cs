@@ -12,7 +12,7 @@ namespace Wynalda
             if (enemy.attackTarget == null) return null; // enemy has nothing it wants to attack.
 
 
-            Debug.Log("Im idleing");
+            //Debug.Log("Im idleing");
 
             Vector3 disToTarget = enemy.transform.position - enemy.attackTarget.position;
 

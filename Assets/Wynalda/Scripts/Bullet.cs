@@ -8,7 +8,7 @@ namespace Wynalda
     {
         public float speed = 10;
         public float lifespan = 3;
-
+        public float damageAmount = 10;
         float age = 0;
 
         Vector3 velocity = Vector3.zero;
@@ -24,5 +24,22 @@ namespace Wynalda
             if (age >= lifespan) Destroy(gameObject);
             transform.position += velocity * Time.deltaTime;
         }
+
+        void OnTriggerEnter(Collider collider)
+        {
+            DamageTaker dt = collider.GetComponent<DamageTaker>();
+            if(dt != null)
+            {
+                dt.TakeDamage(damageAmount); // hurt the thing we hit
+                Destroy(gameObject); // remove bullet when it hits something
+                return;
+            }
+
+
+            /// do other things?
+
+        }
+
+
     }
 }

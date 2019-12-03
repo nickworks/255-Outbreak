@@ -28,9 +28,32 @@ namespace Wynalda
         {
             if (Game.isPaused) return;
 
-       
+            DetectInputMethod();
+
             if (!useMouseForAiming) RotateWithAnalongStick();
             if (useMouseForAiming) RotateWithMouse();
+        }
+
+        private void DetectInputMethod()
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            if (x != 0 || y != 0)
+            {
+                useMouseForAiming = true;
+            }
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+
+            float threshold = .25f;
+            Vector2 input = new Vector2(h, v);
+            if (input.sqrMagnitude > threshold * threshold)
+            {
+                //switch to controller aiming...
+                useMouseForAiming = false;
+            }
         }
 
         private void Move()
