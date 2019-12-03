@@ -27,6 +27,11 @@ namespace Breu
 
         float CooldownToShoot = 0;
 
+        /// <summary>
+        /// what our "CycleWeapons" axis was on the previous frame
+        /// </summary>
+        private int PreviousCycleDir = 0;
+
         void Start()
         {
 
@@ -34,6 +39,8 @@ namespace Breu
 
         void Update()
         {
+            CycleWeapons();//remove this when weapon pickups are implemented
+
             if (CooldownToShoot > 0)
             {
                 CooldownToShoot -= Time.deltaTime;
@@ -44,7 +51,37 @@ namespace Breu
                 Shoot();
             }
 
+
+        }
+
+        private void CycleWeapons()
+        {                        
+            int CycleDir = 0;
             
+            float CycleInput = Input.GetAxisRaw("CycleWeapons");
+
+            if (CycleInput < 0) CycleDir = -1;
+            if (CycleInput > 0) CycleDir = 1;
+
+            if (PreviousCycleDir == 0)//only change weapons if we WEREN'T trying to change weapons last frame
+            {
+                int index = (int)currentWeapon + CycleDir;
+                                
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
+
+                if (index < 0)
+                {
+                    index = max;
+                }
+                if (index > max)
+                {
+                    index = 0;
+                }
+
+                currentWeapon = (WeaponType)index;
+            }
+
+            PreviousCycleDir = CycleDir;
         }
 
         void Shoot()

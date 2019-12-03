@@ -31,7 +31,7 @@ namespace Breu {
                 System.Random RND = new System.Random();
                 int RandomNum = RND.Next(1, 4);
 
-                Debug.Log(RandomNum);//for testing, comment out
+                //Debug.Log(RandomNum);//for testing, comment out
 
                 if (RandomNum == 1)
                 {

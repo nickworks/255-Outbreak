@@ -2,41 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreuBullet : MonoBehaviour
+namespace Breu
 {
-    public float speed = 20;
-
-    public float lifeSpan = 3;
-
-
-    private float age = 0;
-
-    Vector3 velocity = Vector3.zero;
-
-    void Start()
+    public class BreuBullet : MonoBehaviour
     {
-        velocity = transform.right;
-    }
+        public float speed = 20;
 
+        public float lifeSpan = 3;
 
-    void Update()
-    {
-        transform.position += velocity * speed * Time.deltaTime;
-        age += Time.deltaTime;
-        if (age >= lifeSpan)
+        public float Damage = 1;
+
+        public bool DisappearsOnHit = true;
+
+        private float age = 0;
+
+        Vector3 velocity = Vector3.zero;
+
+        void Start()
         {
-            Destroy(transform.parent.gameObject);
+            velocity = transform.right;
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("hit");
-        if (collision.gameObject.CompareTag("BreuBoss"))
+
+        void Update()
         {
-            Debug.Log("Boss hit!");
+            transform.position += velocity * speed * Time.deltaTime;
+            age += Time.deltaTime;
+            if (age >= lifeSpan)
+            {
+                Destroy(transform.parent.gameObject);//destroys bullet groupd at end of life
+            }
         }
+
+        void OnTriggerEnter (Collider col)
+        {
+            BreuDamageTake DT = col.GetComponent<BreuDamageTake>();
+
+            if (DT != null)
+            {
+                DT.TakeDamage(Damage);//damages object
+
+
+            }
+
+            if(DisappearsOnHit == true)
+            {
+               Destroy(gameObject);//destorys bullet if it should disappear on hit
+            }
+        }
+
+
     }
-
-
 }

@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Breu {
+namespace Breu
+{
     public class BreuBossController : MonoBehaviour
     {
         public Transform HandLeft;//stage left
         public Transform HandRight;//stage right
         public Transform Head;
 
+        public bool IsShielded = false;
+        public float ShieldTimer = 3;
+        private float ShieldRemaining;
 
         #region State Variables
+        public float HealthPoints = 10;
+
         public Transform Target;
         public float ChargeTimeLeft;//how long the charge is for the left attack is seconds
         public float ChargeTimeRight;//how long the charge is for the right attack is seconds
@@ -89,6 +95,17 @@ namespace Breu {
 
             ChangeState(newSate);
 
+            if (IsShielded == true)
+            {
+                Debug.Log("Shield up");//for testing, comment out
+                ShieldRemaining-=Time.deltaTime;
+                if (ShieldRemaining <= 0)
+                {
+                    IsShielded = false;
+                    Debug.Log("ShieldDown");//for testing, comment out
+                }
+            }
+
         }
 
         /// <summary>
@@ -122,5 +139,7 @@ namespace Breu {
             VelocityRight = Vector3.Lerp(VelocityRight, Vector3.zero, Time.deltaTime * DecelerationRight);
             HandRight.transform.position += VelocityRight * Time.deltaTime;
         }
+
+        
     }
 }

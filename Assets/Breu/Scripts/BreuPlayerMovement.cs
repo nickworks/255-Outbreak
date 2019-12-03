@@ -9,6 +9,8 @@ namespace Breu
         public bool useMouseForAim = true;
 
         public float MoveSpeed = 10;
+
+        public float Deadzone = .25f;
         
         Camera cam;
 
@@ -20,7 +22,10 @@ namespace Breu
 
         void Update()
         {
+            DetectInputMethod();
+
             Move();
+
             if (!useMouseForAim)
             {
                 RotateWithAnalog();
@@ -29,9 +34,28 @@ namespace Breu
             {
                 RotateWithMouse();
             }
+            
+        }
 
+        private void DetectInputMethod()
+        {
+            float mh = Input.GetAxis("Mouse X");
+            float mv = Input.GetAxis("Mouse Y");
 
+            if (mh != 0 || mv != 0)
+            {
+                useMouseForAim = true;
 
+            }
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+
+            Vector2 input = new Vector2(h, v);
+            if (input.sqrMagnitude > Deadzone * Deadzone)
+            {
+                useMouseForAim = false;
+            }
         }
 
         private void RotateWithMouse()
