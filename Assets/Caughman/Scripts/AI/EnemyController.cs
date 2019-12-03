@@ -58,5 +58,10 @@ namespace Caughman
 
             Instantiate(bulletPrefab, transform.position, rot);
         }
+
+        void Die()
+        {
+            print("I am Dead");
+        }
     }//End EnemyController
 }

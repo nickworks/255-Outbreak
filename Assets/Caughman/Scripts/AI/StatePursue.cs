@@ -10,7 +10,7 @@ public override EnemyState Update()
         {
             //////// BEHAVIOR:
 
-            Debug.Log("I'm Pursuing");
+            //Debug.Log("I'm Pursuing");
 
             //move towards the player
             Vector3 disToPlayer = enemy.attackTarget.position - enemy.transform.position;

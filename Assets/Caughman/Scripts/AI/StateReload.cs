@@ -19,7 +19,7 @@ namespace Caughman {
         {
             ////////BEHAVIOR:
 
-            Debug.Log("I'm Reloading");
+           // Debug.Log("I'm Reloading");
 
 
             timeLeftUntilReloaded -= Time.deltaTime;

@@ -11,7 +11,7 @@ namespace Caughman {
             if (enemy.attackTarget == null) return null;
 
             //////// BEHAVIOUR:
-            Debug.Log("I'm idling");
+           // Debug.Log("I'm idling");
 
 
             //////// TRANSITIONS TO OTHER STATES:

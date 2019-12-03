@@ -88,7 +88,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8505470716744485045}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -107,3 +107,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   lifespan: 2
+  damageAmount: 20

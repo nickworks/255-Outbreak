@@ -21,7 +21,7 @@ namespace Caughman {
         public override EnemyState Update()
         {
             //////// BEHAVIOR:
-            Debug.Log("I'm Attacking");
+            //Debug.Log("I'm Attacking");
 
             //TODO: Shoot bullets at target
             timeUntilNextShot -= Time.deltaTime;

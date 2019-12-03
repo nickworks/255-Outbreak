@@ -27,6 +27,10 @@ namespace Caughman
         public Weapontype currentWeapon = Weapontype.PeaShooter;
 
         float cooldownUntilNextBullet = 0;
+        /// <summary>
+        /// Whatever our "CycleWeapon" Axis value was one frame ago.
+        /// </summary>
+        int previousCycleDir = 0;
 
         // Start is called before the first frame update
         void Start()
@@ -46,23 +50,31 @@ namespace Caughman
         private void CycleWeapons()
         {
 
-           bool wantsToSwitch = Input.GetButtonDown("CycleWeapons");
+          // bool wantsToSwitch = Input.GetButtonDown("CycleWeapons");
 
-            if (!wantsToSwitch) return;
+           // if (!wantsToSwitch) return;
 
-            float cycle = Input.GetAxisRaw("CycleWeapons");
-         
-            int index = (int)currentWeapon;
+            float cycleInput = Input.GetAxisRaw("CycleWeapons");
 
-            if (cycle > 0) index++;
-            if (cycle < 0) index--;
+            int cycleDir = 0;
+            if (cycleInput < 0) cycleDir = -1;
+            if (cycleInput > 0) cycleDir = 1;
 
-            int max = System.Enum.GetNames(typeof(Weapontype)).Length-1;
+            if (previousCycleDir == 0)
+            {
+                int index = (int)currentWeapon + cycleDir;
 
-            if (index < 0) index = max;
-            if (index > max) index = 0;
+                //if (cycle > 0) index++;
+                //if (cycle < 0) index--;
 
-            currentWeapon = (Weapontype)index;
+                int max = System.Enum.GetNames(typeof(Weapontype)).Length - 1;
+
+                if (index < 0) index = max;
+                if (index > max) index = 0;
+
+                currentWeapon = (Weapontype)index;
+            }
+            previousCycleDir = cycleDir;
             
         }
 
@@ -97,6 +109,7 @@ namespace Caughman
             if (cooldownUntilNextBullet > 0) return;
 
             Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
+            
             cooldownUntilNextBullet = 0.1f;
         }//End AutoRifle
 

@@ -38,11 +38,35 @@ namespace Caughman
         {
             if (Game.isPaused == true) return;
             //Move();
+            DetectInputMethod();
 
-            
-            if(useMouseForAiming) RotateWithMouse();
+            if (useMouseForAiming) RotateWithMouse();
             else RotateWithAnalogStick();
 
+        }
+
+        private void DetectInputMethod()
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            if (x != 0 || y != 0)
+            {
+                useMouseForAiming = true;
+            }
+
+            //horizontal input of controller left stick
+            float h = Input.GetAxis("Horizontal2");
+            //vertical input of controller left stick
+            float v = Input.GetAxis("Vertical2");
+
+            Vector2 input = new Vector2(h, v);
+            float threshold = .25f;
+            if (input.sqrMagnitude > threshold * threshold)
+            {
+                //switch to controller aiming
+                useMouseForAiming = false;
+            }
         }
 
         private void RotateWithMouse()
