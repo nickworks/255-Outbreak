@@ -9,12 +9,14 @@ namespace Takens
         {
             SingleShot, 
             FullAuto,
-            Shotgun
+            Shotgun,
+            Boomerang
         }
 
         public WeaponType currentWeapon = WeaponType.SingleShot;
         public Transform projectileSpawnPoint;
         public GameObject bulletOne;
+        public GameObject boomerang;
 
         float cooldownUntilNextBullet = 0;
 
@@ -44,21 +46,26 @@ namespace Takens
                 case WeaponType.Shotgun:
                     ShootShotgun();
                     break;
+                case WeaponType.Boomerang:
+                    ShootBoomerang();
+                    break;
             }
 
         }
 
         private void ShootSingleShot()
         {
-            if(!Input.GetButtonDown("Fire1")) return;
+            if (cooldownUntilNextBullet > 0) return;
+            if (!Input.GetButtonDown("Fire1")) return;
             Instantiate(bulletOne, projectileSpawnPoint.position, transform.rotation);
+            cooldownUntilNextBullet = 0.1f;
         }
         private void ShootFullAuto()
         {
             if (cooldownUntilNextBullet > 0) return;
 
             Instantiate(bulletOne, projectileSpawnPoint.position, transform.rotation);
-            cooldownUntilNextBullet = 0.1f;
+            cooldownUntilNextBullet = 0.07f;
         }
         private void ShootShotgun()
         {
@@ -70,6 +77,13 @@ namespace Takens
             Instantiate(bulletOne, projectileSpawnPoint.position, transform.rotation);
             Instantiate(bulletOne, projectileSpawnPoint.position, Quaternion.Euler(0,yaw - spread,0));
             Instantiate(bulletOne, projectileSpawnPoint.position, Quaternion.Euler(0,yaw + spread,0));
+        }
+        private void ShootBoomerang()
+        {
+            if (cooldownUntilNextBullet > 0) return;
+            if (!Input.GetButtonDown("Fire1")) return;
+            Instantiate(boomerang, projectileSpawnPoint.position, transform.rotation);
+            cooldownUntilNextBullet = 0.2f;
         }
     }
 }
