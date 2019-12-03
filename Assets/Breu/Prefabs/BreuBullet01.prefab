@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8717368154205439099}
   m_Layer: 0
   m_Name: BreuBullet01 - 1
-  m_TagString: Untagged
+  m_TagString: BreuPlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3541023521325532441}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

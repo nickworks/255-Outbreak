@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4941163193685780600}
   m_Layer: 0
   m_Name: BreuBullet02 - 2
-  m_TagString: Untagged
+  m_TagString: BreuPlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7755924605883276504}
   m_Layer: 0
   m_Name: BreuBullet02 - 1
-  m_TagString: Untagged
+  m_TagString: BreuPlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 7828265092513576525}
   m_Layer: 0
   m_Name: BreuBullet02 - 3
-  m_TagString: Untagged
+  m_TagString: BreuPlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

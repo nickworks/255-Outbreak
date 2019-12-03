@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Breu {
     public class BreuBossController : MonoBehaviour
     {
-        public Transform HandLeft;
-        public Transform HandRight;
+        public Transform HandLeft;//stage left
+        public Transform HandRight;//stage right
         public Transform Head;
 
 
@@ -22,20 +22,31 @@ namespace Breu {
         #endregion
 
         #region Physics Variables
-        
 
+        /// <summary>
+        /// stage left hand physics
+        /// </summary>
         public float DecelerationLeft = 2;
         public float AccelerationLeft = 10;
         public float MovementRangeLeft = 10;
 
+        /// <summary>
+        /// stage right physics
+        /// </summary>
         public float DecelerationRight = 2;
         public float AccelerationRight = 10;
         public float MovementRangeRight = 10;
 
+        /// <summary>
+        /// head physics
+        /// </summary>
         public float DecelerationHead = 2;
         public float AccelerationHead = 10;
         public float MovementRangeHead = 10;
 
+        /// <summary>
+        /// Velocity for each boss part
+        /// </summary>
         [HideInInspector]
         public Vector3 VelocityRight = Vector3.zero;
         [HideInInspector]
@@ -43,6 +54,9 @@ namespace Breu {
         [HideInInspector]
         public Vector3 VelocityHead = Vector3.zero;
 
+        /// <summary>
+        /// Starting positions of all boss parts
+        /// </summary>
         [HideInInspector]
         public Vector3 StartRight;
         [HideInInspector]
@@ -52,7 +66,9 @@ namespace Breu {
         #endregion
 
 
-
+        /// <summary>
+        /// setsdefault state to idle and starting position for boss parts
+        /// </summary>
         void Start()
         {
             ChangeState(new BreuBossIdle());
@@ -62,7 +78,9 @@ namespace Breu {
             StartHead = Head.position;
         }
 
-
+        /// <summary>
+        /// Moves boss parts and checks states each frame
+        /// </summary>
         void Update()
         {
             MoveParts();
@@ -90,6 +108,9 @@ namespace Breu {
             }
         }
 
+        /// <summary>
+        /// Sets velovity for each part and applies it
+        /// </summary>
         private void MoveParts()
         {
             VelocityHead = Vector3.Lerp(VelocityHead, Vector3.zero, Time.deltaTime * DecelerationHead);

@@ -28,4 +28,15 @@ public class BreuBullet : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("hit");
+        if (collision.gameObject.CompareTag("BreuBoss"))
+        {
+            Debug.Log("Boss hit!");
+        }
+    }
+
+
 }
