@@ -19,6 +19,10 @@ namespace Wynalda
         public WeaponType currentWeapon = WeaponType.PeaShooter;
 
         float cooldownUntilNextBullet = 0;
+        /// <summary>
+        /// Whatever our "CycleWeapon" axis value was one frame ago.
+        /// </summary>
+        int previousCycleDirection = 0;
 
         void Start()
         {
@@ -34,25 +38,25 @@ namespace Wynalda
 
         private void CycleWeapons()
         {
-            bool wantsToCycle = Input.GetButtonDown("CycleWeapons");
+            float cycleInput = Input.GetAxisRaw("CycleWeapons");
 
-            if (!wantsToCycle) return;
+            int cycleDirection = 0;
+            if (cycleInput < 0) cycleDirection = -1;
+            if (cycleInput > 0) cycleDirection = 1;
 
-            float cycle = Input.GetAxisRaw("CycleWeapons");
-            if (cycle != 0)
+            if (previousCycleDirection == 0) // only change weapons if we WEREN'T trying to change weapons last frame.
             {
-                int index = (int)currentWeapon;
-                if (cycle > 0) index++;
-                if (cycle < 0) index--;
+                int index = (int)currentWeapon + cycleDirection;
 
-                int max = System.Enum.GetNames(typeof(WeaponType)).Length-1;
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
 
                 if (index < 0) index = max;
                 if (index > max) index = 0;
 
                 currentWeapon = (WeaponType)index;
-
             }
+
+            previousCycleDirection = cycleDirection;
         }
 
         void Shoot()
