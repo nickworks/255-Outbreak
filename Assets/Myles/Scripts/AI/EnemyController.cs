@@ -38,7 +38,7 @@ namespace Myles
         {
             if (newState != null)
             {
-                currentState.OnEnd();
+                if (currentState != null) currentState.OnEnd();
                 currentState = newState;
                 currentState.OnBegin(this);
             }
