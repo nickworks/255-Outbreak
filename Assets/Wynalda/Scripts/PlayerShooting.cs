@@ -26,9 +26,35 @@ namespace Wynalda
         }
         void Update()
         {
+            CycleWeapons();
+
             if (Input.GetButton("Fire1")) Shoot();
-            if(cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
+            if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
         }
+
+        private void CycleWeapons()
+        {
+            bool wantsToCycle = Input.GetButtonDown("CycleWeapons");
+
+            if (!wantsToCycle) return;
+
+            float cycle = Input.GetAxisRaw("CycleWeapons");
+            if (cycle != 0)
+            {
+                int index = (int)currentWeapon;
+                if (cycle > 0) index++;
+                if (cycle < 0) index--;
+
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length-1;
+
+                if (index < 0) index = max;
+                if (index > max) index = 0;
+
+                currentWeapon = (WeaponType)index;
+
+            }
+        }
+
         void Shoot()
         {
             switch (currentWeapon)
