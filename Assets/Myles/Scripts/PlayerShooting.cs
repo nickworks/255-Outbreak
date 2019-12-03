@@ -8,21 +8,22 @@ namespace Myles
     {
         public enum WeaponType
         {
-            PeaShooter,
-            AutoRifle,
-            TripleShot,
-            RocketLauncher
+            PeaShooter, // 0
+            AutoRifle, // 1
+            TripleShot, // 2
+            Mines // 3
 
         }
 
 
         public GameObject basicBullet;
-        public GameObject rocket;
+        public GameObject mine;
         public Transform projectileSpawnPoint;
         public WeaponType currentWeapon = WeaponType.PeaShooter;
 
 
         float cooldownUntilNextBullet = 0;
+        int previousCycleDirection = 0;
 
         void Start()
         {
@@ -32,10 +33,39 @@ namespace Myles
 
         void Update()
         {
-            if(cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
+            CycleWeapons();
 
-            if (Input.GetButton("Fire1")) Shoot();
+            if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
+            
+            
         }
+
+        private void CycleWeapons()
+        {
+            
+
+            float cycleInput = Input.GetAxisRaw("CycleWeapons");
+            int cycleDirection = 0;
+            if (cycleInput < 0) cycleDirection = -1;
+            if (cycleInput > 0) cycleDirection = 1;
+
+            if (previousCycleDirection == 0) 
+            {
+
+                int index = (int)currentWeapon + cycleDirection;
+
+
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
+
+                if (index < 0) index = max;
+                if (index > max) index = 0;
+                currentWeapon = (WeaponType)index;
+
+            }
+
+            previousCycleDirection = cycleDirection;
+        }
+
         void Shoot() 
         {
             switch (currentWeapon)
@@ -49,8 +79,8 @@ namespace Myles
                 case WeaponType.TripleShot:
                     ShootTripleShot();
                     break;
-                case WeaponType.RocketLauncher:
-                    ShootRocketLauncher();
+                case WeaponType.Mines:
+                    LayMines();
                     break;
             }
 
@@ -86,13 +116,13 @@ namespace Myles
             Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw + spread, 0));
             
         }
-        private void ShootRocketLauncher()
+        private void LayMines()
         {
 
             if (cooldownUntilNextBullet > 0) return;
 
-            Instantiate(rocket, projectileSpawnPoint.position, transform.rotation);
-            cooldownUntilNextBullet = 5f;
+            Instantiate(mine, projectileSpawnPoint.position, transform.rotation);
+            cooldownUntilNextBullet = 3f;
         }
 
     }

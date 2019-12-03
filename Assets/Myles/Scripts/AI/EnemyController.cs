@@ -54,5 +54,12 @@ namespace Myles
 
             Instantiate(bulletPrefab, transform.position, rot);
         }
+
+        void Die()
+        {
+            print("aaaaaaahhhhhh");
+        }
+
+
     }
 }

@@ -38,6 +38,8 @@ namespace Myles
                 {
                     Destroy(gameObject);
                     Game.GameOver();
+
+                    
                 }
                 
             }

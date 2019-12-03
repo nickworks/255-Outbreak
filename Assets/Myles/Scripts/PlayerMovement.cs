@@ -9,22 +9,49 @@ namespace Myles
         public bool useMouseForAiming;
         public float speed = 5;
 
+
+        CharacterController pawn;
         Camera cam;
 
         void Start()
         {
             //cam = GameObject.FindObjectOfType<Camera>();
             cam = Camera.main;
-
+            pawn = GetComponent<CharacterController>();
+            Move();
         }
 
 
         void Update()
         {
-            Move();
+            DetectInputMethod();
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+
+
+            Vector2 input = new Vector2(h, v);
+            float threshold = .25f;
+            if (input.sqrMagnitude > threshold * threshold)
+            {
+                useMouseForAiming = false;
+            }
+
+            print($"{h} {v}");
 
             if (useMouseForAiming) RotateWithMouse();
             else RotateWithAnalogStick();
+        }
+
+        private void DetectInputMethod()
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            if (x != 0 || y != 0)
+            {
+                useMouseForAiming = true;
+            }
         }
 
         private void RotateWithMouse()
@@ -32,7 +59,7 @@ namespace Myles
             if (cam == null)
             {
 
-                Debug.LogError("There's no camera to do a raycast from...");
+                //Debug.LogError("There's no camera to do a raycast from...");
                 return;
             }
 
@@ -75,7 +102,9 @@ namespace Myles
             float v = Input.GetAxisRaw("Vertical");
 
             Vector3 dir = new Vector3(h, 0, v).normalized;
-            transform.position += dir * speed * Time.deltaTime;
+            Vector3 delta = dir * speed * Time.deltaTime;
+
+            pawn.Move(delta);
         }
     }
 }
