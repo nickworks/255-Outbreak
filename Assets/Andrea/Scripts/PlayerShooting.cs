@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace andrea
+namespace Andrea
 {
     public class PlayerShooting : MonoBehaviour
     {
