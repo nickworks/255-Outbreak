@@ -6,8 +6,8 @@ namespace Takens {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "",
-            creator = "",
+            zoneName = "Space Ship Shooter",
+            creator = "Takens",
             level = "TakensScene"
         };
     }
