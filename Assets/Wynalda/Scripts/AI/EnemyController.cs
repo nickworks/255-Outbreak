@@ -6,7 +6,9 @@ namespace Wynalda
 {
     public class EnemyController : MonoBehaviour
     {
-        public Bullet bulletPrefab;
+        public Bullet peaPrefab;
+        public Bullet autoPrefab;
+        public Bullet triplePrefab;
         
         //state stuff
         #region State Stuff
@@ -51,15 +53,30 @@ namespace Wynalda
         /// <summary>
         /// Spawns a projectile, and shoots it at the attack target.
         /// </summary>
-        public void ShootProjectile()
+        public void ShootBasicProjectile()
         {
             Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
 
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
 
-            Instantiate(bulletPrefab, transform.position, rot);
+            Bullet bill = Instantiate(peaPrefab, transform.position, rot);
+            bill.bulletShooter = transform;
         }
+        public void ShootTripleProjectile()
+        {
+            Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
 
+            Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
+
+            float yaw = transform.eulerAngles.y;
+            float spread = 10;
+
+            Bullet bill1 = Instantiate(triplePrefab, transform.position, rot);
+            Bullet bill2 = Instantiate(triplePrefab, transform.position, Quaternion.Euler(0, yaw-spread, 0));
+            Bullet bill3 = Instantiate(triplePrefab, transform.position, Quaternion.Euler(0, yaw+spread, 0));
+
+
+        }
 
     }
 }

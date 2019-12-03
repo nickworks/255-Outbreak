@@ -760,7 +760,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8177705567473f24b82e1e8730e1c2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1513049046495517739, guid: 5a10c6b23d4511545a07fb9e57eba473,
+  peaPrefab: {fileID: 1513049046495517739, guid: 5a10c6b23d4511545a07fb9e57eba473,
+    type: 3}
+  autoPrefab: {fileID: 1513049046495517739, guid: 703b5ef342a4730479a53903a79180b5,
+    type: 3}
+  triplePrefab: {fileID: 1513049046495517739, guid: 81c5db612a176b44a869eb2fc32959a1,
     type: 3}
   attackTarget: {fileID: 20299788}
   pursueDistanceThreshold: 10

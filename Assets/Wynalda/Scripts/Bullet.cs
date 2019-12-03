@@ -11,6 +11,8 @@ namespace Wynalda
         public float damageAmount = 10;
         float age = 0;
 
+        public Transform bulletShooter; //object that shot the bullet
+
         Vector3 velocity = Vector3.zero;
        
         void Start()
@@ -27,6 +29,8 @@ namespace Wynalda
 
         void OnTriggerEnter(Collider collider)
         {
+            if (collider.transform == bulletShooter) return;
+
             DamageTaker dt = collider.GetComponent<DamageTaker>();
             if(dt != null)
             {

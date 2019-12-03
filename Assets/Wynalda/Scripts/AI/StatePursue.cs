@@ -27,7 +27,7 @@ namespace Wynalda
             //switch to ATTACK
             if(disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
             {
-                return new StateAttack();
+                return new StateBasicAttack();
             }
 
             return null;

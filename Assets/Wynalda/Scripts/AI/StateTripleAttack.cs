@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Wynalda
 {
-    public class StateAttack : EnemyState
+    public class StateTripleAttack : EnemyState
     {
         float timeBetweenShots = 0.5f;
         float timeUntilNextShot = 0;
 
         int ammo = 0;
-        int ammoMax = 5;
+        int ammoMax = 15;
 
         public override void OnBegin(EnemyController enemy)
         {
@@ -30,7 +30,7 @@ namespace Wynalda
            if(timeUntilNextShot <= 0 && ammo > 0)
             {
                 ammo--;
-                enemy.ShootProjectile();
+                enemy.ShootTripleProjectile();
                 timeUntilNextShot = timeBetweenShots;
             }
                                 
