@@ -6,8 +6,8 @@ namespace Caughman {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "",
-            creator = "",
+            zoneName = "Bloody Stream",
+            creator = "M. Caughman",
             level = "CaughmanScene"
         };
     }

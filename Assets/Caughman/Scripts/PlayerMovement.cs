@@ -13,6 +13,8 @@ namespace Caughman
         /// </summary>
         public float speed = 7.5f;
 
+        CharacterController pawn;
+
         /// <summary>
         /// Reference to the scenes camera
         /// </summary>
@@ -23,12 +25,21 @@ namespace Caughman
         {
             //cam = GameObject.FindObjectOfType<Camera>()
             cam = Camera.main;
+            pawn = GetComponent<CharacterController>();
+        }
+
+        void FixedUpdate()
+        {
+            Move();
         }
 
         // Update is called once per frame
         void Update()
         {
-            Move();
+            if (Game.isPaused == true) return;
+            //Move();
+
+            
             if(useMouseForAiming) RotateWithMouse();
             else RotateWithAnalogStick();
 
@@ -88,7 +99,8 @@ namespace Caughman
             Vector3 dir = new Vector3(h, 0, v).normalized;
 
             //Players movment in meters per second
-            transform.position += dir * speed * Time.deltaTime;
+            Vector3 delta = dir * speed * Time.deltaTime;
+            pawn.Move(delta);
         }
     }
 }
