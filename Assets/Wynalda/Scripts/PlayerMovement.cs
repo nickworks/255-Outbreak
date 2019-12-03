@@ -20,7 +20,7 @@ namespace Wynalda
         // Update is called once per frame
         void Update()
         {
-
+            if (Game.isPaused) return;
 
             Move();
             if (!useMouseForAiming) RotateWithAnalongStick();
