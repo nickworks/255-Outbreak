@@ -12,23 +12,29 @@ namespace Breu {
 
         #region State Variables
         public Transform Target;
-        public float ChargeTimeLeft;
-        public float ChargeTimeRight;
-        public float ChargeTimeHead;
+        public float ChargeTimeLeft;//how long the charge is for the left attack is seconds
+        public float ChargeTimeRight;//how long the charge is for the right attack is seconds
+        public float ChargeTimeHead;//how long the charge is for the head attack is seconds
+        public float IdleTimer = 3;//number of seconds spend idling
+        public float ResetTimer = 3;//number of seconds spend reseting
 
         BreuBossState CurrentState;
         #endregion
 
         #region Physics Variables
-        public float IdleTimer = 3;//number of second spend idling
+        
 
         public float DecelerationLeft = 2;
-        public float DecelerationRight = 2;
-        public float DecelerationHead = 2;
+        public float AccelerationLeft = 10;
+        public float MovementRangeLeft = 10;
 
-        public float AccelerationLeft = 2;
-        public float AccelerationRight = 2;
-        public float AccelerationHead = 2;
+        public float DecelerationRight = 2;
+        public float AccelerationRight = 10;
+        public float MovementRangeRight = 10;
+
+        public float DecelerationHead = 2;
+        public float AccelerationHead = 10;
+        public float MovementRangeHead = 10;
 
         [HideInInspector]
         public Vector3 VelocityRight = Vector3.zero;
@@ -36,18 +42,31 @@ namespace Breu {
         public Vector3 VelocityLeft = Vector3.zero;
         [HideInInspector]
         public Vector3 VelocityHead = Vector3.zero;
-#endregion
+
+        [HideInInspector]
+        public Vector3 StartRight;
+        [HideInInspector]
+        public Vector3 StartLeft;
+        [HideInInspector]
+        public Vector3 StartHead;
+        #endregion
 
 
-                
+
         void Start()
         {
             ChangeState(new BreuBossIdle());
+
+            StartRight = HandRight.position;
+            StartLeft = HandLeft.position;
+            StartHead = Head.position;
         }
 
 
         void Update()
         {
+            MoveParts();
+
             BreuBossState newSate = CurrentState.Update();
 
             ChangeState(newSate);
@@ -69,6 +88,18 @@ namespace Breu {
                 CurrentState = NewState;
                 CurrentState.OnBegin(this);
             }
+        }
+
+        private void MoveParts()
+        {
+            VelocityHead = Vector3.Lerp(VelocityHead, Vector3.zero, Time.deltaTime * DecelerationHead);
+            Head.transform.position += VelocityHead * Time.deltaTime;
+
+            VelocityLeft = Vector3.Lerp(VelocityLeft, Vector3.zero, Time.deltaTime * DecelerationLeft);
+            HandLeft.transform.position += VelocityLeft * Time.deltaTime;
+
+            VelocityRight = Vector3.Lerp(VelocityRight, Vector3.zero, Time.deltaTime * DecelerationRight);
+            HandRight.transform.position += VelocityRight * Time.deltaTime;
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Breu
         {
             Debug.Log("Head Attacking");//for testing, comment out
 
-            return new BreuBossIdle();
+            //Transition from Head Attack to Reset
+            return new BreuBossReset();
         }
     }
 }

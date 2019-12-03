@@ -156,19 +156,26 @@ MonoBehaviour:
   HandRight: {fileID: 1156622937}
   Head: {fileID: 412676353}
   Target: {fileID: 876959394}
-  ChargeTimeLeft: 1
-  ChargeTimeRight: 1
-  ChargeTimeHead: 1
-  IdleTimer: 1
+  ChargeTimeLeft: 2
+  ChargeTimeRight: 2
+  ChargeTimeHead: 2
+  IdleTimer: 2
+  ResetTimer: 2
   DecelerationLeft: 2
+  AccelerationLeft: 20
+  MovementRangeLeft: 3
   DecelerationRight: 2
+  AccelerationRight: 20
+  MovementRangeRight: 3
   DecelerationHead: 2
-  AccelerationLeft: 2
-  AccelerationRight: 2
-  AccelerationHead: 2
+  AccelerationHead: 15
+  MovementRangeHead: 2
   VelocityRight: {x: 0, y: 0, z: 0}
   VelocityLeft: {x: 0, y: 0, z: 0}
   VelocityHead: {x: 0, y: 0, z: 0}
+  StartRight: {x: 0, y: 0, z: 0}
+  StartLeft: {x: 0, y: 0, z: 0}
+  StartHead: {x: 0, y: 0, z: 0}
 --- !u!65 &412676350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -236,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412676348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.9, y: 2.18, z: 1.3836081}
+  m_LocalPosition: {x: 0, y: 0, z: 16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -363,7 +370,7 @@ GameObject:
   - component: {fileID: 971800023}
   - component: {fileID: 971800022}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971800021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.9, y: 2.18, z: -7.2}
+  m_LocalPosition: {x: -19.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -547,7 +554,7 @@ GameObject:
   - component: {fileID: 1156622935}
   - component: {fileID: 1156622934}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,7 +627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156622933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.9, y: 2.18, z: 15.42}
+  m_LocalPosition: {x: 25.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -788,6 +795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: useMouseForAim
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784561422400921335, guid: f5cb8514a8b00b040bb9ac7bff3a3815,
+        type: 3}
+      propertyPath: MoveSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7784561422400921332, guid: f5cb8514a8b00b040bb9ac7bff3a3815,
         type: 3}

@@ -12,7 +12,8 @@ namespace Breu
         {
             Debug.Log("Left Attacking");//for testing, comment out
 
-            return new BreuBossIdle();
+            //Transition from Left Attack to Reset
+            return new BreuBossReset();
         }
     }
 }

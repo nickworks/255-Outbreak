@@ -20,6 +20,8 @@ namespace Breu {
 
             Boss.IdleTimer -= Time.deltaTime;
 
+            Movement();
+
             /// <summary>
             /// When the idle timer hits zero a random charge state is selected
             /// </summary>
@@ -46,6 +48,18 @@ namespace Breu {
             }
 
             return null;
+        }
+
+        void Movement()
+        {
+            float RightDir = -Mathf.Cos(Time.fixedTime) * Boss.MovementRangeRight;
+            Boss.VelocityRight += new Vector3(0, 0, RightDir * Boss.AccelerationRight * Time.deltaTime);
+
+            float LeftDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeLeft;
+            Boss.VelocityLeft += new Vector3(0, 0, LeftDir * Boss.AccelerationLeft * Time.deltaTime);
+
+            float HeadDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeHead;
+            Boss.VelocityHead += new Vector3(HeadDir * Boss.AccelerationHead * Time.deltaTime, 0, 0);
         }
 
         
