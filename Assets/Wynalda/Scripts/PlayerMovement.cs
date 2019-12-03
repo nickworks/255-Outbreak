@@ -10,11 +10,17 @@ namespace Wynalda
         public bool useMouseForAiming = false;
         public float speed = 5;
         Camera cam;
+        CharacterController pawn;
 
         void Start()
         {
             // cam = GameObject.FindObjectOfType<Camera>();
             cam = Camera.main;
+            pawn = GetComponent<CharacterController>();
+        }
+        void FixedUpdate()
+        {
+            Move();
         }
 
         // Update is called once per frame
@@ -22,7 +28,7 @@ namespace Wynalda
         {
             if (Game.isPaused) return;
 
-            Move();
+       
             if (!useMouseForAiming) RotateWithAnalongStick();
             if (useMouseForAiming) RotateWithMouse();
         }
@@ -33,7 +39,9 @@ namespace Wynalda
             float v = Input.GetAxisRaw("Vertical"); //keyboard movement
 
             Vector3 dir = new Vector3(h, 0, v).normalized;
-            transform.position += dir * speed * Time.deltaTime;
+            Vector4 delta = dir * speed * Time.fixedDeltaTime;
+
+            pawn.Move(delta);
         }
 
         private void RotateWithAnalongStick()
