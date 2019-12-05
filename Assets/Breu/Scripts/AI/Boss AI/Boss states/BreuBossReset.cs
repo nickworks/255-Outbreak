@@ -24,10 +24,10 @@ namespace Breu {
                 Boss.VelocityRight += new Vector3(0, 0, DirToTarget.z * Boss.AccelerationRight * Boss.AccelerationRight * Time.deltaTime);
             }
 
-            DirToTarget = (Boss.StartLeft - Boss.HandLeft.position).normalized;
-            if (Mathf.Abs(DirToTarget.z) > .6)
+            DirToTarget = (Boss.LeftStartPoint.position - Boss.HandLeft.position).normalized;
+            if (Mathf.Abs(DirToTarget.z) > .6 || Mathf.Abs(DirToTarget.x) > .6)
             {
-                Boss.VelocityLeft += new Vector3(0, 0, DirToTarget.z * Boss.AccelerationLeft * Boss.AccelerationLeft * Time.deltaTime);
+                Boss.VelocityLeft += new Vector3(DirToTarget.x * Mathf.Sqrt(Boss.AccelerationLeft * 500)  * Time.deltaTime, 0, DirToTarget.z * Boss.AccelerationLeft * Boss.AccelerationLeft * Time.deltaTime);
             }
 
             DirToTarget = (Boss.StartHead - Boss.Head.position).normalized;

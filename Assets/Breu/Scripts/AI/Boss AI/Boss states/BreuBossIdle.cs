@@ -56,7 +56,7 @@ namespace Breu {
             Boss.VelocityRight += new Vector3(0, 0, RightDir * Boss.AccelerationRight * Time.deltaTime);
 
             float LeftDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeLeft;
-            Boss.VelocityLeft += new Vector3(0, 0, LeftDir * Boss.AccelerationLeft * Time.deltaTime);
+            Boss.VelocityLeft += new Vector3((Boss.LeftStartPoint.position - Boss.HandLeft.position).x * Boss.AccelerationLeft * Time.deltaTime, 0, LeftDir * Boss.AccelerationLeft * Time.deltaTime);
 
             float HeadDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeHead;
             Boss.VelocityHead += new Vector3(HeadDir * Boss.AccelerationHead * Time.deltaTime, 0, 0);

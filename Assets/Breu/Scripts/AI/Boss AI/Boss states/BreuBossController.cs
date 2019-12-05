@@ -6,13 +6,11 @@ namespace Breu
 {
     public class BreuBossController : MonoBehaviour
     {
-        public Transform HandLeft;//stage left
-        public Transform HandRight;//stage right
+        public Transform HandLeft;//stage left hand
+        public Transform LeftStartPoint;// start position for the left hand
+        public Transform HandRight;//stage right hand
         public Transform Head;
 
-        public bool IsShielded = false;
-        public float ShieldTimer = 3;
-        private float ShieldRemaining;
 
         #region State Variables
         public float HealthPoints = 10;
@@ -95,16 +93,7 @@ namespace Breu
 
             ChangeState(newSate);
 
-            if (IsShielded == true)
-            {
-                Debug.Log("Shield up");//for testing, comment out
-                ShieldRemaining-=Time.deltaTime;
-                if (ShieldRemaining <= 0)
-                {
-                    IsShielded = false;
-                    Debug.Log("ShieldDown");//for testing, comment out
-                }
-            }
+            
 
         }
 

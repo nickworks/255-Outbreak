@@ -36,7 +36,7 @@ namespace Breu
         private void Movement()
         {
             Vector3 DirToTarget = (Boss.Target.position - Boss.HandLeft.position).normalized;
-            Boss.VelocityLeft += new Vector3(0, 0, DirToTarget.z * Boss.AccelerationLeft * Boss.AccelerationLeft * Time.deltaTime);
+            Boss.VelocityLeft += new Vector3((Boss.LeftStartPoint.position - Boss.HandLeft.position).x * Boss.AccelerationLeft * Time.deltaTime, 0, DirToTarget.z * Boss.AccelerationLeft * Boss.AccelerationLeft * Time.deltaTime);
 
             float RightDir = -Mathf.Cos(Time.fixedTime) * Boss.MovementRangeRight;
             Boss.VelocityRight += new Vector3(0, 0, RightDir * Boss.AccelerationRight * Time.deltaTime);

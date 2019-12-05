@@ -9,6 +9,11 @@ namespace Breu
         public float MaxHealth = 100;
         public float CurrentHealth;
 
+
+        public bool IsShielded = false;
+        public float ShieldTimer = 3;
+        private float ShieldRemaining;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -18,15 +23,32 @@ namespace Breu
         // Update is called once per frame
         void Update()
         {
-
+            if (IsShielded == true)
+            {
+                Debug.Log("Shield up");//for testing, comment out
+                ShieldRemaining -= Time.deltaTime;
+                if (ShieldRemaining <= 0)
+                {
+                    IsShielded = false;
+                    Debug.Log("ShieldDown");//for testing, comment out
+                }
+            }
         }
 
         public void TakeDamage(float Damage)
         {
-            CurrentHealth -= Damage;
-            if (CurrentHealth <= 0)
+            if (IsShielded == false)
             {
-                OnDeath();
+                CurrentHealth -= Damage;
+                if (CurrentHealth <= 0)
+                {
+                    OnDeath();
+                }
+                else
+                {
+                    IsShielded = true;
+                    ShieldRemaining = ShieldTimer;
+                }
             }
         }
 

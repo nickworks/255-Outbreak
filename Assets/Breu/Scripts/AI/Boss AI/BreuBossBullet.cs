@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Breu
 {
-    public class BreuBullet : MonoBehaviour
+    public class BreuBossBullet : MonoBehaviour
     {
         public float speed = 20;
 
@@ -34,11 +33,11 @@ namespace Breu
             }
         }
 
-        void OnTriggerEnter (Collider col)
+        void OnTriggerEnter(Collider col)
         {
             BreuDamageTake DT = col.GetComponent<BreuDamageTake>();
 
-            if (col.gameObject.tag != "BreuPlayer")
+            if (col.gameObject.tag == "BreuPlayer")
             {
                 if (DT != null)
                 {
@@ -53,7 +52,5 @@ namespace Breu
                 }
             }
         }
-
-
     }
 }
