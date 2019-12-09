@@ -107,4 +107,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifespan: 3
-  damageAmount: 10
+  damageAmount: 5
+  bulletShooter: {fileID: 0}

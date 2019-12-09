@@ -22,11 +22,11 @@ namespace Wynalda
             int attackState = Random.Range(0, 3);
             if(attackState == 0)
             {
-                return new StateBasicAttack();
+                return new StateCircleAttack();
             }
             if (attackState == 1)
             {
-                return new StateTripleAttack();
+                return new StateStrongAttack();
             }
             if (attackState == 2)
             {
