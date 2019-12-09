@@ -6,7 +6,7 @@ namespace Caughman
 {
     public class EnemyController : MonoBehaviour
     {
-        public Bullet bulletPrefab;
+        public Bullet bossBulletOne;
 
         //States stuff:
         public Transform attackTarget;
@@ -75,8 +75,15 @@ namespace Caughman
 
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
 
-            Bullet bill = Instantiate(bulletPrefab, transform.position, rot);
+
+           //float spread = 10;
+
+            //float yaw = transform.eulerAngles.y;
+
+            Bullet bill = Instantiate(bossBulletOne, transform.position, Quaternion.FromToRotation(Vector3.right, dirToTarget));
+            Bullet bill2 = Instantiate(bossBulletOne, transform.position, Quaternion.FromToRotation(Vector3.left, dirToTarget));
             bill.bulletShooter = transform;
+            bill2.bulletShooter = transform;
         }
 
         void Die()

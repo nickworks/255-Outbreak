@@ -12,7 +12,7 @@ namespace Caughman
        public enum Weapontype
         {
             PeaShooter,//0
-            AutoRifle,//1
+            Flamethrower,//1
             TripleShot//2
         }
 
@@ -20,6 +20,8 @@ namespace Caughman
         /// Our Bullet Prefab
         /// </summary>
         public GameObject basicBullet;
+        public GameObject flameBullet;
+        public GameObject shotgunBullet;
         public Transform projectileSpawnPoint;
         /// <summary>
         /// State machine to tell what weapons is being used
@@ -87,8 +89,8 @@ namespace Caughman
                     ShootPeashooter();
                     break;
                 //Weapons State for AutoRifle
-                case Weapontype.AutoRifle:
-                    ShootAutoRifle();
+                case Weapontype.Flamethrower:
+                    ShootFlamethrower();
                     break;
                 //Weapons State for TripleShot
                 case Weapontype.TripleShot:
@@ -104,11 +106,11 @@ namespace Caughman
             Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
         }//End ShootPeaShooter
 
-        private void ShootAutoRifle()
+        private void ShootFlamethrower()
         {
             if (cooldownUntilNextBullet > 0) return;
 
-            Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
+            Instantiate(flameBullet, projectileSpawnPoint.position, transform.rotation);
             
             cooldownUntilNextBullet = 0.1f;
         }//End AutoRifle
@@ -117,13 +119,17 @@ namespace Caughman
         {
             if (!Input.GetButtonDown("Fire1")) return;//Must release Fire1 to keep shooting
 
+            if (cooldownUntilNextBullet > 0) return;
+
+            cooldownUntilNextBullet = .5f;
+
             float yaw = transform.eulerAngles.y;
 
             float spread = 10;
 
-            Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw, 0));
-            Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw-spread, 0));
-            Instantiate(basicBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw + spread, 0));
+            Instantiate(shotgunBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw, 0));
+            Instantiate(shotgunBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw-spread, 0));
+            Instantiate(shotgunBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw + spread, 0));
 
         }//End TripleShot
     }
