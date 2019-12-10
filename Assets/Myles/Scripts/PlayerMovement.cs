@@ -18,6 +18,11 @@ namespace Myles
             //cam = GameObject.FindObjectOfType<Camera>();
             cam = Camera.main;
             pawn = GetComponent<CharacterController>();
+            
+        }
+
+        void FixedUpdate()
+        {
             Move();
         }
 
@@ -25,20 +30,7 @@ namespace Myles
         void Update()
         {
             DetectInputMethod();
-
-            float h = Input.GetAxis("Horizontal2");
-            float v = Input.GetAxis("Vertical2");
-
-
-            Vector2 input = new Vector2(h, v);
-            float threshold = .25f;
-            if (input.sqrMagnitude > threshold * threshold)
-            {
-                useMouseForAiming = false;
-            }
-
-            print($"{h} {v}");
-
+            
             if (useMouseForAiming) RotateWithMouse();
             else RotateWithAnalogStick();
         }
@@ -51,6 +43,17 @@ namespace Myles
             if (x != 0 || y != 0)
             {
                 useMouseForAiming = true;
+            }
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+
+
+            Vector2 input = new Vector2(h, v);
+            float threshold = .25f;
+            if (input.sqrMagnitude > threshold * threshold)
+            {
+                useMouseForAiming = false;
             }
         }
 

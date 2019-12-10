@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicBullet: {fileID: 3314137427511757461, guid: b0be1b09cb3c1e34ca3a9ed7e7576f51,
     type: 3}
-  mine: {fileID: 0}
+  mine: {fileID: 8159425080479465510, guid: cee74b9e2e6d34246bcb04c986ac6c3a, type: 3}
   projectileSpawnPoint: {fileID: 191022952}
   currentWeapon: 0
 --- !u!114 &2111428112

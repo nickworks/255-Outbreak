@@ -84,6 +84,8 @@ namespace Myles
                     break;
             }
 
+            print("shooting");
+
         }
 
         private void ShootPeaShooter()

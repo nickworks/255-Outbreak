@@ -9,7 +9,7 @@ namespace Myles
     {
         public override EnemyState Update()
         {
-            Debug.Log("I'm pursuing");
+            //Debug.Log("I'm pursuing");
 
             //move towards the player
 

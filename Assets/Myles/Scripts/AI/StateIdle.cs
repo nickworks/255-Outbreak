@@ -12,7 +12,7 @@ public class StateIdle : EnemyState
     if(enemy.attackTarget == null) return null; // enemy has nohing it wants to attack
 
 
-    Debug.Log("I'm idling");
+    //Debug.Log("I'm idling");
         
        Vector3 disToTarget = enemy.transform.position - enemy.attackTarget.position;
 

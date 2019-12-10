@@ -38,10 +38,11 @@ namespace Myles
             {
                 dt.TakeDamage(damageAmount); // hurt the thing we hit
                 Destroy(gameObject); // remove the bullet
+                return;
             }
 
 
-            ///// do other things...
+            
         }
     }
 }
