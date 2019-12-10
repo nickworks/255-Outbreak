@@ -140,7 +140,7 @@ namespace Caughman
         {
             print("Boss is dead");
             bossDead = true;
-            Game.GoToNextLevel();
+            Game.GotoNextLevel();
 
         }
 
@@ -158,7 +158,7 @@ namespace Caughman
         /// </summary>
         void NextLevel()
         {
-            Game.GoToNextLevel();
+            Game.GotoNextLevel();
             print("Going to Next Level now");
         }
     }//End EnemyController
