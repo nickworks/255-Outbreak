@@ -58,7 +58,7 @@ namespace Powers
             float radians = Mathf.Atan2(v, h);
             float degrees = radians * 180 / Mathf.PI;
 
-            lookDirection = new Vector3(90, degrees - 90, 0);
+            lookDirection = new Vector3(90, degrees + 90, 0);
             transform.eulerAngles = lookDirection;
         }
     }
