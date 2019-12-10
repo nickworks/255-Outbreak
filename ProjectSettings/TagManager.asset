@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Boss
+  - BreuPlayerBullet
+  - BreuBoss
+  - BrueBossBullet
+  - BreuPlayer
   layers:
   - Default
   - TransparentFX

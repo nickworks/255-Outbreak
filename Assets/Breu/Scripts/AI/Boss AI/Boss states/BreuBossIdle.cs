@@ -16,7 +16,7 @@ namespace Breu {
 
         public override BreuBossState Update()
         {
-            Debug.Log("idling");//for testing, comment out
+            //Debug.Log("idling");//for testing, comment out
 
             Boss.IdleTimer -= Time.deltaTime;
 
@@ -31,7 +31,7 @@ namespace Breu {
                 System.Random RND = new System.Random();
                 int RandomNum = RND.Next(1, 4);
 
-                Debug.Log(RandomNum);//for testing, comment out
+                //Debug.Log(RandomNum);//for testing, comment out
 
                 if (RandomNum == 1)
                 {
@@ -50,13 +50,16 @@ namespace Breu {
             return null;
         }
 
+        /// <summary>
+        /// Sets velovity for each part and applies it
+        /// </summary>
         void Movement()
         {
             float RightDir = -Mathf.Cos(Time.fixedTime) * Boss.MovementRangeRight;
             Boss.VelocityRight += new Vector3(0, 0, RightDir * Boss.AccelerationRight * Time.deltaTime);
 
             float LeftDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeLeft;
-            Boss.VelocityLeft += new Vector3(0, 0, LeftDir * Boss.AccelerationLeft * Time.deltaTime);
+            Boss.VelocityLeft += new Vector3((Boss.LeftStartPoint.position - Boss.HandLeft.position).x * Boss.AccelerationLeft * Time.deltaTime, 0, LeftDir * Boss.AccelerationLeft * Time.deltaTime);
 
             float HeadDir = Mathf.Cos(Time.fixedTime) * Boss.MovementRangeHead;
             Boss.VelocityHead += new Vector3(HeadDir * Boss.AccelerationHead * Time.deltaTime, 0, 0);

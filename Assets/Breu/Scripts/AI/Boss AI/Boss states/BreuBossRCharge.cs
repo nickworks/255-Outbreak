@@ -8,17 +8,23 @@ namespace Breu
 {
     public class BreuBossRCharge : BreuBossState
     {
-        float CTimer;
+        float CTimer;//hold the max charge time
+
+        Renderer rend;//used to change color when charging
         public override void OnBegin(BreuBossController boss)
         {
             base.OnBegin(boss);
 
             CTimer = Boss.ChargeTimeRight;
+
+            rend = Boss.HandRight.GetComponent<Renderer>();
         }
 
         public override BreuBossState Update()
         {
-            Debug.Log("Right Charging");//for testing, comment out
+            //Debug.Log("Right Charging");//for testing, comment out
+
+            rend.material.color = Color.Lerp(Color.white, Boss.ChargeColor, .75f);//transistions color from white to magenta
 
             movement();
 
@@ -27,9 +33,10 @@ namespace Breu
 
 
             //transition from Charging to Attack
-            if (Boss.ChargeTimeRight <= 0)
+            if (Boss.ChargeTimeRight <= 0)//resets charge time and color then switches to Right Attack
             {
-                Boss.ChargeTimeRight = CTimer;
+                Boss.ChargeTimeRight = CTimer;// resest current time to max
+                rend.material.color = Color.white;//reset color to white
                 return new BreuBossRAttack();
             }
 
@@ -37,6 +44,9 @@ namespace Breu
             return null;
         }
 
+        /// <summary>
+        /// Sets velovity for each part and applies it
+        /// </summary>
         private void movement()
         {
             Vector3 DirToTarget = (Boss.Target.position - Boss.HandRight.position).normalized;

@@ -14,6 +14,9 @@ namespace Breu
             Shotgun,
             Shotfun,
         }
+        public GameObject MainBody;
+        BreuDamageTake Status;
+
 
         public GameObject bullet01Basic;
         public GameObject bullet02ThreeBurst;
@@ -25,26 +28,70 @@ namespace Breu
 
         public WeaponType currentWeapon = WeaponType.Basic;
 
-        float CooldownToShoot = 0;
+        [HideInInspector]
+        public float CooldownToShoot = 0;
+
+        [HideInInspector]
+        public float MaxCooldown;
+
+        /// <summary>
+        /// what our "CycleWeapons" axis was on the previous frame
+        /// </summary>
+        private int PreviousCycleDir = 0;
 
         void Start()
         {
-
+            Status = MainBody.GetComponent<BreuDamageTake>();
         }
 
         void Update()
         {
-            if (CooldownToShoot > 0)
+            //if status is not null and current health is greater than zero continue with fire logic
+            if (Status != null && Status.CurrentHealth > 0)
             {
-                CooldownToShoot -= Time.deltaTime;
-            }
+                CycleWeapons();//remove this when weapon pickups are implemented
 
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Shoot();
-            }
+                if (CooldownToShoot > 0)
+                {
+                    CooldownToShoot -= Time.deltaTime;
+                }
 
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Shoot();
+                }
+
+            }
+        }
+
+        private void CycleWeapons()
+        {                        
+            int CycleDir = 0;
             
+            float CycleInput = Input.GetAxisRaw("CycleWeapons");
+
+            if (CycleInput < 0) CycleDir = -1;
+            if (CycleInput > 0) CycleDir = 1;
+
+            if (PreviousCycleDir == 0)//only change weapons if we WEREN'T trying to change weapons last frame
+            {
+                int index = (int)currentWeapon + CycleDir;
+                                
+                int max = System.Enum.GetNames(typeof(WeaponType)).Length - 1;
+
+                if (index < 0)
+                {
+                    index = max;
+                }
+                if (index > max)
+                {
+                    index = 0;
+                }
+
+                currentWeapon = (WeaponType)index;
+            }
+
+            PreviousCycleDir = CycleDir;
         }
 
         void Shoot()
@@ -71,7 +118,12 @@ namespace Breu
 
         private void ShootBasic()
         {
+            if (CooldownToShoot > 0) return;
+
             Instantiate(bullet01Basic, BulletSpawn.position, transform.rotation);
+            
+            CooldownToShoot = 0.1f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootThreeBurst()
@@ -80,7 +132,8 @@ namespace Breu
 
             Instantiate(bullet02ThreeBurst, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .2f;
+            CooldownToShoot = .75f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootShotgun()
@@ -89,7 +142,8 @@ namespace Breu
 
             Instantiate(bullet03Shotgun, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .3f;
+            CooldownToShoot = .4f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootShotFun()
@@ -98,7 +152,8 @@ namespace Breu
             
             Instantiate(bullet04ShotFun, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .3f;
+            CooldownToShoot = 1.25f;
+            MaxCooldown = CooldownToShoot;
         }
     }
 }

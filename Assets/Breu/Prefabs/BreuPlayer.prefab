@@ -153,9 +153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9024f836a4b9d4c811890f64a05205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet01Basic: {fileID: 5717655655328790544, guid: 343e17736602bae4599969d86903253e,
+  bullet01Basic: {fileID: 4226038127083685940, guid: 343e17736602bae4599969d86903253e,
     type: 3}
+  bullet02ThreeBurst: {fileID: 8445444300633121070, guid: e4655ff9841eeac45964c5271af72142,
+    type: 3}
+  bullet03Shotgun: {fileID: 0}
+  bullet04ShotFun: {fileID: 0}
+  Bullet05Melee: {fileID: 0}
   BulletSpawn: {fileID: 1992556537814913685}
+  currentWeapon: 0
 --- !u!1 &7784561423080550710
 GameObject:
   m_ObjectHideFlags: 0
