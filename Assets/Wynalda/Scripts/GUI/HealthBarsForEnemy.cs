@@ -19,7 +19,7 @@ namespace Wynalda {
 
         void OnGUI()//This draws the words and shows the health on the screen.
         {
-           GUI.Label(new Rect(620, 20, 1000, 1000), "Enemy Health: " + damageTaker2.health); // this displays the players health and updates in real time on the GUI!       
+           GUI.Label(new Rect(950, 20, 1000, 1000), "Enemy Health: " + damageTaker2.health); // this displays the players health and updates in real time on the GUI!       
         }
     }
     

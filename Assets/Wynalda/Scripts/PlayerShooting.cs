@@ -100,5 +100,11 @@ namespace Wynalda
         }
 
 
+        void OnGUI()//This draws the weapon being used on the screen
+        {
+            GUI.Label(new Rect(20, 520, 1000, 1000), "Current Weapon: " + currentWeapon); // this displays the players health and updates in real time on the GUI!       
+        }
+
+
     }
 }
