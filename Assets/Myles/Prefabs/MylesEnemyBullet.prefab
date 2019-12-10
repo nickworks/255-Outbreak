@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8090522077605785551}
   - component: {fileID: -6755487625565927227}
   m_Layer: 0
-  m_Name: MylesBullet
+  m_Name: MylesEnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bab19ce9420789b49b3379af18c9dbfb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,3 +107,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   lifespan: 3
+  damageAmount: 10
