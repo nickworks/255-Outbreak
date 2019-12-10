@@ -18,14 +18,14 @@ public class BreuBullet : MonoBehaviour
         velocity = transform.right;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         transform.position += velocity * speed * Time.deltaTime;
         age += Time.deltaTime;
         if (age >= lifeSpan)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }
