@@ -16,7 +16,7 @@ namespace Breu {
 
         public override BreuBossState Update()
         {
-            Debug.Log("idling");//for testing, comment out
+            //Debug.Log("idling");//for testing, comment out
 
             Boss.IdleTimer -= Time.deltaTime;
 
@@ -50,6 +50,9 @@ namespace Breu {
             return null;
         }
 
+        /// <summary>
+        /// Sets velovity for each part and applies it
+        /// </summary>
         void Movement()
         {
             float RightDir = -Mathf.Cos(Time.fixedTime) * Boss.MovementRangeRight;

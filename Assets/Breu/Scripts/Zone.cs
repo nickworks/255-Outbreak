@@ -6,7 +6,7 @@ namespace Breu {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "Squishy bits",
+            zoneName = "Assault on Agutalis",
             creator = "Breu",
             level = "BreuScene"
         };

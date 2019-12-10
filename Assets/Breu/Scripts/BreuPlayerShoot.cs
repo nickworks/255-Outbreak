@@ -14,6 +14,9 @@ namespace Breu
             Shotgun,
             Shotfun,
         }
+        public GameObject MainBody;
+        BreuDamageTake Status;
+
 
         public GameObject bullet01Basic;
         public GameObject bullet02ThreeBurst;
@@ -25,7 +28,11 @@ namespace Breu
 
         public WeaponType currentWeapon = WeaponType.Basic;
 
-        float CooldownToShoot = 0;
+        [HideInInspector]
+        public float CooldownToShoot = 0;
+
+        [HideInInspector]
+        public float MaxCooldown;
 
         /// <summary>
         /// what our "CycleWeapons" axis was on the previous frame
@@ -34,24 +41,27 @@ namespace Breu
 
         void Start()
         {
-
+            Status = MainBody.GetComponent<BreuDamageTake>();
         }
 
         void Update()
         {
-            CycleWeapons();//remove this when weapon pickups are implemented
-
-            if (CooldownToShoot > 0)
+            //if status is not null and current health is greater than zero continue with fire logic
+            if (Status != null && Status.CurrentHealth > 0)
             {
-                CooldownToShoot -= Time.deltaTime;
+                CycleWeapons();//remove this when weapon pickups are implemented
+
+                if (CooldownToShoot > 0)
+                {
+                    CooldownToShoot -= Time.deltaTime;
+                }
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    Shoot();
+                }
+
             }
-
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Shoot();
-            }
-
-
         }
 
         private void CycleWeapons()
@@ -108,7 +118,12 @@ namespace Breu
 
         private void ShootBasic()
         {
+            if (CooldownToShoot > 0) return;
+
             Instantiate(bullet01Basic, BulletSpawn.position, transform.rotation);
+            
+            CooldownToShoot = 0.1f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootThreeBurst()
@@ -117,7 +132,8 @@ namespace Breu
 
             Instantiate(bullet02ThreeBurst, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .2f;
+            CooldownToShoot = .75f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootShotgun()
@@ -126,7 +142,8 @@ namespace Breu
 
             Instantiate(bullet03Shotgun, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .3f;
+            CooldownToShoot = .4f;
+            MaxCooldown = CooldownToShoot;
         }
 
         private void ShootShotFun()
@@ -135,7 +152,8 @@ namespace Breu
             
             Instantiate(bullet04ShotFun, BulletSpawn.position, transform.rotation);
 
-            CooldownToShoot = .3f;
+            CooldownToShoot = 1.25f;
+            MaxCooldown = CooldownToShoot;
         }
     }
 }

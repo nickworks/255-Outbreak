@@ -7,15 +7,15 @@ namespace Breu
     public class BossPunch : MonoBehaviour
     {
         [HideInInspector]
-        public bool FinishedPunch = false;
+        public bool FinishedPunch = false;//if the atack is complete
 
-        public float PunchSpeed = 10;
+        public float PunchSpeed = 10;//speed of punch
 
-        public float Damage = 1;
+        public float Damage = 1;// how much damage can the punch do to the player
 
-        public float PunchDuration;
+        public float PunchDuration;// how long the punch can last
 
-        private float CurrentDuration = 0;
+        private float CurrentDuration = 0;//how long the punch has been happening
 
         Vector3 Velocity = Vector3.zero;
 
@@ -24,7 +24,10 @@ namespace Breu
         {
             Velocity = transform.right;
         }
-        
+
+        /// <summary>
+        /// Moves the "fist" to simulate a punch
+        /// </summary>
         public void Punch()
         {
 
@@ -37,6 +40,9 @@ namespace Breu
             }
         }
 
+        /// <summary>
+        /// does damage to actors tagged "BreuPlayer" when colliders enter eachother
+        /// </summary>
         void OnTriggerEnter(Collider col)
         {
             BreuDamageTake DT = col.GetComponent<BreuDamageTake>();

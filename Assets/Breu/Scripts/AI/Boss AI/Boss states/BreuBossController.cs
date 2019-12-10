@@ -6,10 +6,17 @@ namespace Breu
 {
     public class BreuBossController : MonoBehaviour
     {
+        public Color ChargeColor;
         public Transform HandLeft;//stage left hand
         public Transform LeftStartPoint;// start position for the left hand
         public Transform HandRight;//stage right hand
         public Transform Head;
+        /*
+        public Transform HeadAttackWarning;
+        public GameObject HeadAttackWarningPlane;//the area the head attack will effect
+        [HideInInspector]
+        public Renderer HeadAttackWarningRenderer;
+        */
 
 
         #region State Variables
@@ -80,6 +87,15 @@ namespace Breu
             StartRight = HandRight.position;
             StartLeft = HandLeft.position;
             StartHead = Head.position;
+
+            /*
+            //if the head attack warning plane is not null set the corresponding renderer
+            if (HeadAttackWarningPlane != null)
+            {
+                HeadAttackWarningRenderer = HeadAttackWarningPlane.GetComponent<Renderer>();
+                HeadAttackWarningRenderer.enabled = false;
+            }
+            */
         }
 
         /// <summary>
@@ -87,12 +103,14 @@ namespace Breu
         /// </summary>
         void Update()
         {
-            MoveParts();
+            if (Game.isPaused == false)
+            {
+                MoveParts();
 
-            BreuBossState newSate = CurrentState.Update();
+                BreuBossState newSate = CurrentState.Update();
 
-            ChangeState(newSate);
-
+                ChangeState(newSate);
+            }
             
 
         }
