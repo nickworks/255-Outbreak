@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Takens
 {
+    /// <summary>
+    /// Abstract class that the enemy states inherit from
+    /// </summary>
     public abstract class EnemyState
     {
+        /// <summary>
+        /// reference to the enemyController component
+        /// </summary>
         protected EnemyController enemy;
 
         /// <summary>
@@ -23,7 +29,10 @@ namespace Takens
         {
 
         }
-
+        /// <summary>
+        /// This method is called once per frame
+        /// </summary>
+        /// <returns></returns>
         public abstract EnemyState Update();
         
     }
