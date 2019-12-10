@@ -9,7 +9,7 @@ namespace Myles
     {
         public override EnemyState Update()
         {
-            Debug.Log("I'm pursuing");
+            //Debug.Log("I'm pursuing");
 
             //move towards the player
 
@@ -28,7 +28,7 @@ namespace Myles
                 return new StateIdle();
             }
 
-            if(disSqr < enemy.pursueDistanceThreshold * enemy.attackDistanceThreshold)
+            if(disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
             {
                 return new StateAttack();
             }

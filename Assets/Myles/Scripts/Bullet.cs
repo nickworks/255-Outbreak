@@ -9,18 +9,19 @@ namespace Myles
 
         public float speed = 10;
         public float lifespan = 3;
+        public float damageAmount = 10;
 
         float age = 0;
 
         Vector3 velocity = Vector3.zero;
 
-        // Start is called before the first frame update
+        
         void Start()
         {
             velocity = transform.right * speed;
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             age += Time.deltaTime;
@@ -29,6 +30,19 @@ namespace Myles
 
 
             transform.position += velocity * Time.deltaTime;
+        }
+        void OnTriggerEnter(Collider collider)
+        {
+            DamageTaker dt = collider.GetComponent<DamageTaker>();
+            if (dt != null)
+            {
+                dt.TakeDamage(damageAmount); // hurt the thing we hit
+                Destroy(gameObject); // remove the bullet
+                return;
+            }
+
+
+            
         }
     }
 }
