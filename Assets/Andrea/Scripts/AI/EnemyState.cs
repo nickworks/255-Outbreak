@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace Andrea
 {
+    /// <summary>
+    /// Abstract base class for the enemy state machine.
+    /// </summary>
     public abstract class EnemyState
     {
+        /// <summary>
+        /// Reference for the EnemyController component.
+        /// </summary>
         protected EnemyController enemy;
 
         /// <summary>
