@@ -14,7 +14,7 @@ namespace Wynalda {
             if(ThingTakingDamage2 != null)//if the things that take damage(player/enemy) are not null, then it gets the component so i can call the health variable and display it
             {
                 damageTaker2 = ThingTakingDamage2.GetComponent<DamageTaker>();//gets a link to damage taker script
-            }
+            }          
         }
 
         void OnGUI()//This draws the words and shows the health on the screen.
