@@ -30,16 +30,16 @@ namespace Wynalda
             {
                 Destroy(gameObject); //The Player/Enemy has died and their gameObject is removed as a result!
                 Game.GameOver(); // game over
-                print("Game Over!");
+               // print("Game Over!"); // used for making sure it works
 
             }
             else
             {
                 Destroy(gameObject); //The Player/Enemy has died and their gameObject is removed as a result!
                 Game.GotoNextLevel(); // go to next level!
-                print("Next Level!");
+                //  print("Next Level!"); // used for making sure it works
             }
-            
+
         }
 
 

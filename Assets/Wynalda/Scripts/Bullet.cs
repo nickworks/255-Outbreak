@@ -6,10 +6,10 @@ namespace Wynalda
 {
     public class Bullet : MonoBehaviour
     {
-        public float speed = 10;
-        public float lifespan = 7;
-        public float damageAmount = 10;
-        float age = 0;
+        public float speed = 10; //speed of bullet
+        public float lifespan = 7; //lifespan of bullet
+        public float damageAmount = 10; //amount of damage bullet does, set in inspector
+        float age = 0; //age alive to remove
 
         public Transform bulletShooter; //object that shot the bullet
 
@@ -27,7 +27,7 @@ namespace Wynalda
             transform.position += velocity * Time.deltaTime;
         }
 
-        void OnTriggerEnter(Collider collider)
+        void OnTriggerEnter(Collider collider)//collision!
         {
             if (collider.transform == bulletShooter) return;
 

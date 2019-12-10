@@ -19,22 +19,23 @@ namespace Wynalda
             {
                 return new StatePursue();
             }
-            int attackState = Random.Range(0, 3);
+            //When it's done pursuing, the boss randomly enters 1 of 3 attack modes.
+            int attackState = Random.Range(0, 3); // random between the 3 attacks.
             if(attackState == 0)
             {
-                return new StateCircleAttack();
+                return new StateCircleAttack(); //circle attack, bullets all around him
             }
             if (attackState == 1)
             {
-                return new StateStrongAttack();
+                return new StateStrongAttack(); // strong attack, 5 bullets in one, pack a big punch.
             }
             if (attackState == 2)
             {
-                return new StateBasicAttack();
+                return new StateBasicAttack(); // basic attack, but quick shooting time, so can often come out and then immediately another attack as well. 
             }
 
 
-            return null;
+            return null; // otherwise null
         }
     }
 }

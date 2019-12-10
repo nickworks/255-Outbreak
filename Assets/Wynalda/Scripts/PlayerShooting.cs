@@ -7,7 +7,7 @@ namespace Wynalda
     public class PlayerShooting : MonoBehaviour
     {
         
-        public enum WeaponType
+        public enum WeaponType // switches between weapons that the player can use
         {
             PeaShooter,
             AutoRifle,
@@ -39,7 +39,7 @@ namespace Wynalda
             if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
         }
 
-        private void CycleWeapons()
+        private void CycleWeapons() // switches between player weapons
         {
             float cycleInput = Input.GetAxisRaw("CycleWeapons");
 
@@ -62,7 +62,7 @@ namespace Wynalda
             previousCycleDirection = cycleDirection;
         }
 
-        void Shoot()
+        void Shoot() // shoot does the shooting
         {
             switch (currentWeapon)
             {
@@ -72,19 +72,19 @@ namespace Wynalda
             }
         }
 
-        private void ShootPeaShooter()
+        private void ShootPeaShooter() // basic shooter
         {
             if (!Input.GetButtonDown("Fire1")) return;
 
             Instantiate(peaBullet, projectileSpawnPoint.position, transform.rotation);
         }
-        private void ShootAutoRifle()
+        private void ShootAutoRifle() // auto shooter, nerfed to be less good
         {
             if (cooldownUntilNextBullet > 0) return;
             Instantiate(autoBullet, projectileSpawnPoint.position, transform.rotation);
             cooldownUntilNextBullet = 0.3f;
         }
-        private void ShootTripleShot()
+        private void ShootTripleShot() // triple shot
         {
             if (!Input.GetButtonDown("Fire1")) return; // must release Fire1 to keep shooting
 

@@ -6,28 +6,28 @@ namespace Wynalda
 {
     public class EnemyController : MonoBehaviour
     {
-        public Bullet peaPrefab;
-        public Bullet autoPrefab;
-        public Bullet triplePrefab;
-        
+        public Bullet peaPrefab; //bullet prefab to store settings of a certain bullet
+        public Bullet autoPrefab; //bullet prefab to store settings of a certain bullet
+        public Bullet triplePrefab; //bullet prefab to store settings of a certain bullet
+
         //state stuff
         #region State Stuff
         public Transform attackTarget;
-        public float pursueDistanceThreshold = 10;
-        public float attackDistanceThreshold = 3;
-        #endregion
+        public float pursueDistanceThreshold = 10; // distance away to begin pursuing. Set in inspector.
+        public float attackDistanceThreshold = 3;  // distance away to begin attacking. Set in inspector.
 
         EnemyState currentState;
+        #endregion
 
         #region Physics
         //physics stuff
         public Vector3 velocity = Vector3.zero;
-        public float deceleration = 10;
-        public float acceleration = 3;
+        public float deceleration = 10; // deceleration set in inspector
+        public float acceleration = 3; // acceleration set in inspector
         #endregion
         void Start()
         {
-           ChangeState(new StateIdle());
+           ChangeState(new StateIdle());//new idle, which then loops back into pursuing and attacking
         }
 
         void Update()
@@ -40,7 +40,7 @@ namespace Wynalda
 
         }
 
-        private void ChangeState(EnemyState newState) { 
+        private void ChangeState(EnemyState newState) { //new state!
             if(newState != null)
             {
                 if(currentState != null)currentState.OnEnd();
@@ -53,7 +53,7 @@ namespace Wynalda
         /// <summary>
         /// Spawns a projectile, and shoots it at the attack target.
         /// </summary>
-        public void ShootBasicProjectile()
+        public void ShootBasicProjectile() //basic bullet
         {
             Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
@@ -61,7 +61,7 @@ namespace Wynalda
             bill.bulletShooter = transform;
         }
     
-        public void ShootCircleProjectile()
+        public void ShootCircleProjectile()//lots of bullets in a circle
         {
             Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
             //Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget); //Not used anymore, was used for aiming a single shot at the player.
@@ -186,7 +186,7 @@ namespace Wynalda
         }
       
 
-        public void ShootStrongProjectile()
+        public void ShootStrongProjectile()//strong bullets.
         {
             Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);

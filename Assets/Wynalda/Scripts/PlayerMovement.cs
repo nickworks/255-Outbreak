@@ -7,10 +7,10 @@ namespace Wynalda
 
     public class PlayerMovement : MonoBehaviour
     {
-        public bool useMouseForAiming = false;
-        public float speed = 5;
-        Camera cam;
-        CharacterController pawn;
+        public bool useMouseForAiming = false; //switch between mouse/keyboard and controller
+        public float speed = 5; // speed of player, set in inspector
+        Camera cam; // camera
+        CharacterController pawn; // character controller
 
         void Start()
         {
@@ -28,13 +28,13 @@ namespace Wynalda
         {
             if (Game.isPaused) return;
 
-            DetectInputMethod();
+            DetectInputMethod(); // checks for new inputs to auto switch which input is being used.
 
-            if (!useMouseForAiming) RotateWithAnalongStick();
-            if (useMouseForAiming) RotateWithMouse();
+            if (!useMouseForAiming) RotateWithAnalongStick(); //switch to controller
+            if (useMouseForAiming) RotateWithMouse(); // switch to mouse
         }
 
-        private void DetectInputMethod()
+        private void DetectInputMethod() //checks for new input to auto switch which input is being used.
         {
             float x = Input.GetAxis("Mouse X");
             float y = Input.GetAxis("Mouse Y");
@@ -86,7 +86,7 @@ namespace Wynalda
             transform.eulerAngles = new Vector3(0, degs, 0);
         }
 
-        private void RotateWithMouse()
+        private void RotateWithMouse() // mouse movement
         {
             if (cam == null)
             {

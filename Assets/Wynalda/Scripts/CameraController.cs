@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script controls our fancy camera!
+/// </summary>
 namespace Wynalda
 {
     public class CameraController : MonoBehaviour
