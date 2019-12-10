@@ -29,10 +29,7 @@ namespace Powers
         private void OnTriggerEnter(Collider collider)
         {
             //if it collides with something other than the player, destroy the bullet
-            if (collider.tag != "Player")
-            {
-                if (age >= lifespan) Destroy(gameObject);
-            }
+            if (collider.tag == "GameController" || collider.tag == "Finish") Destroy(gameObject);
         }
     }
 }
