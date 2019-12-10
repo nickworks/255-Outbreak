@@ -29,6 +29,8 @@ namespace Myles
 
         void Update()
         {
+            if (Game.isPaused) return;
+
             DetectInputMethod();
             
             if (useMouseForAiming) RotateWithMouse();
@@ -108,6 +110,10 @@ namespace Myles
             Vector3 delta = dir * speed * Time.deltaTime;
 
             pawn.Move(delta);
+        }
+        void Die()
+        {
+            Game.GameOver();
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Myles
     {
 
         public Bullet bulletPrefab;
+        public Transform projectileSpawnPoint;
+
 
         public Transform attackTarget;
         EnemyState currentState;
@@ -52,12 +54,15 @@ namespace Myles
 
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, dirToTarget);
 
-            Instantiate(bulletPrefab, transform.position, rot);
+            Instantiate(bulletPrefab, projectileSpawnPoint.position, rot);
+            
+
         }
 
         void Die()
         {
             print("aaaaaaahhhhhh");
+            //Game.GoToNextLevel;
         }
 
 

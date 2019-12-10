@@ -6,7 +6,7 @@ namespace Myles {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "[Placeholder] Zone",
+            zoneName = "Germ Zone",
             creator = "Danny Myles",
             level = "MylesScene"
         };

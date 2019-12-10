@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 namespace Myles
 {
@@ -14,6 +16,8 @@ namespace Myles
             Mines // 3
 
         }
+
+        public Text currentWeaponText;
 
 
         public GameObject basicBullet;
@@ -36,8 +40,8 @@ namespace Myles
             CycleWeapons();
 
             if (cooldownUntilNextBullet > 0) cooldownUntilNextBullet -= Time.deltaTime;
-            
-            
+
+            if (Input.GetButton("Fire1")) Shoot();
         }
 
         private void CycleWeapons()
@@ -64,6 +68,8 @@ namespace Myles
             }
 
             previousCycleDirection = cycleDirection;
+
+            currentWeaponText.text = currentWeapon.ToString();
         }
 
         void Shoot() 
