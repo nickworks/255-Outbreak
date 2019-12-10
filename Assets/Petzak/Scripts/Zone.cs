@@ -6,10 +6,14 @@ namespace Petzak {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "The Fun Zone",
+            zoneName = "Big Spider",
             creator = "Alec Petzak",
             level = "PetzakScene"
         };
 
+        /// <summary>
+        /// Global hud
+        /// </summary>
+        public HUD hud;
     }
 }
