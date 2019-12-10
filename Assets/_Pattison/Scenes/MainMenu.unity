@@ -1252,6 +1252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1b2ac9e277c054eab27cdcb1fc6840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverPrefab: {fileID: 4168019262325717632, guid: 06bdbefd643c67e4bb3fde37f8bc9448,
+    type: 3}
 --- !u!4 &1574046879
 Transform:
   m_ObjectHideFlags: 0

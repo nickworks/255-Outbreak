@@ -9,12 +9,14 @@ public class Game : MonoBehaviour {
     public static bool isPaused { get; private set; }
 
     static public void GameOver() {
-        // TODO: show the "game over" screen
+        if (main) main.ClearZone();
+        SceneManager.LoadScene("GameOver");
     }
+
+
     static public void GotoNextLevel() {
-        // TODO: this
+        if(main) main.Skip();
     }
-    
 
     float prePauseTimescale = 1;
 
@@ -61,6 +63,7 @@ public class Game : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Pause") && InZone()) TogglePause();
         if (isPaused) return;
+        //if (Input.GetKeyDown(KeyCode.K)) Game.GameOver();
     }
 
     public void WarpRandom() {
@@ -71,11 +74,12 @@ public class Game : MonoBehaviour {
     }
     public void WarpTo(ZoneInfo zone) {
 
+        ClearZone();
         Debug.LogFormat($"<size=18>warping to <b>{zone.level}</b></size>\n");
         SceneManager.LoadScene(zone.level, LoadSceneMode.Single);
         currentZone = zone;
         RemoveCurrentFromZoneList();
-
+        
     }
     private void RemoveCurrentFromZoneList() {
         if (zonesUnplayed.Count == 0) zonesUnplayed = new List<ZoneInfo>(zones);
@@ -88,7 +92,6 @@ public class Game : MonoBehaviour {
     // called by "Skip to Next" button
     public void Skip() {
         WarpRandom();
-        SetPause(false);
     }
     public void TogglePause() {
         SetPause(null);
@@ -105,9 +108,16 @@ public class Game : MonoBehaviour {
         Time.timeScale = isPaused ? 0 : prePauseTimescale;
     }
     public void BackToMainMenu() {
-        currentZone = new ZoneInfo();
+        ClearZone();
         SceneManager.LoadScene("MainMenu");
-        SetPause(false);
     }
-    
+
+    /// <summary>
+    /// Unpauses the game, sets the Time.timeScale to 1, and clears Game.main.currentZone
+    /// </summary>
+    private void ClearZone() {
+        SetPause(false);
+        Time.timeScale = 1;
+        currentZone = new ZoneInfo();
+    }
 }
