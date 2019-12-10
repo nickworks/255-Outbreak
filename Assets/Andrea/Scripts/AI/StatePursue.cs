@@ -12,6 +12,10 @@ namespace Andrea
     {
         public override EnemyState Update()
         {
+            if (enemy.attackTarget == null)
+            {
+                return null;
+            }
             ///// BEHAVIOR:
 
 

@@ -5377,7 +5377,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15872
+  m_Name: pb_Mesh-2662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7180,7 +7180,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15910
+  m_Name: pb_Mesh-2664
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -29211,6 +29211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5242387116988949216, guid: e5daa81d7864e1b49800b989f22616e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 5242387116988949228, guid: e5daa81d7864e1b49800b989f22616e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29529,7 +29534,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16500
+  m_Name: pb_Mesh-2686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37429,7 +37434,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16442
+  m_Name: pb_Mesh-2688
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39915,7 +39920,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15728
+  m_Name: pb_Mesh-2660
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -41457,7 +41462,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16116
+  m_Name: pb_Mesh-2666
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -47929,7 +47934,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16660
+  m_Name: pb_Mesh-2690
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49206,6 +49211,11 @@ PrefabInstance:
     - target: {fileID: 9024562090634198964, guid: c8868542b9efa3644b34c6c2a961023b,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024562090634198964, guid: c8868542b9efa3644b34c6c2a961023b,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9024562090634198960, guid: c8868542b9efa3644b34c6c2a961023b,

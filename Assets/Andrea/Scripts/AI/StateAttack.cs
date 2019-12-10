@@ -50,14 +50,16 @@ namespace Andrea
             ///// TRANSITIONS:
 
             //transition: if distance > attack threshold, switch to pursue
-
-            Vector3 toAttackTarget = enemy.attackTarget.position - enemy.transform.position;
-
-            float disSqr = toAttackTarget.sqrMagnitude;
-
-            if (disSqr > enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
+            if (enemy.attackTarget != null)
             {
-                return new StatePursue();
+                Vector3 toAttackTarget = enemy.attackTarget.position - enemy.transform.position;
+
+                float disSqr = toAttackTarget.sqrMagnitude;
+
+                if (disSqr > enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
+                {
+                    return new StatePursue();
+                }
             }
 
             // transition: if ammo == 0, switch to reload

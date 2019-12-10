@@ -102,7 +102,7 @@ namespace Andrea
         /// </summary>
         public void ShootProjectile()
         {
-            if (bulletPrefab != null)
+            if (bulletPrefab != null && attackTarget != null)
             {
                 Vector3 dirToTarget = (attackTarget.position - transform.position).normalized;
 

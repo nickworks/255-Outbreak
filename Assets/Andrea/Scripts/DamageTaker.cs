@@ -28,6 +28,11 @@ namespace Andrea
         /// </summary>
         public Image healthBar;
 
+        /// <summary>
+        /// Bool for coroutines
+        /// </summary>
+        bool isDead = false;
+
 
         /// <summary>
         /// Applies the specified amount of damage to the game object.
@@ -44,6 +49,19 @@ namespace Andrea
 
             if (health <= 0)
             {
+                health = 0;
+                healthBar.fillAmount = 0;
+                if (gameObject.tag == ("Player"))
+                {
+                    gameObject.GetComponent<PlayerMovement>().enabled = false;
+                    gameObject.GetComponent<PlayerShooting>().enabled = false;
+                    isDead = true;
+                }
+                else if (gameObject.tag == ("Boss"))
+                {
+                    gameObject.GetComponent<EnemyController>().enabled = false;
+                    isDead = true;
+                }
                 gameObject.BroadcastMessage("Die");
             }
         }
@@ -53,6 +71,10 @@ namespace Andrea
         /// </summary>
         void Update()
         {
+            if (isDead)
+            {
+                return;
+            }
             if (healthBar != null)
             {
                 healthBar.fillAmount = health / maxHealth; //Update healthbars
@@ -87,7 +109,36 @@ namespace Andrea
         /// </summary>
         void Die()
         {
-            Destroy(gameObject);
+
+            if (gameObject.tag == ("Player"))
+            {
+                //Game.GameOver();
+                StartCoroutine(PlayerDeath());
+            }
+            else if (gameObject.tag == ("Boss"))
+            {
+                //Game.GotoNextLevel();
+                StartCoroutine(BossDeath());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        IEnumerator PlayerDeath()
+        {
+            yield return new WaitForSeconds(1.5f);
+            Game.GameOver();
+            Debug.Log("GAME OVER");
+        }
+
+        IEnumerator BossDeath()
+        {
+            yield return new WaitForSeconds(1.5f);
+            Game.GotoNextLevel();
+            Debug.Log("WIN");
+            yield return null;
         }
     }
 }
