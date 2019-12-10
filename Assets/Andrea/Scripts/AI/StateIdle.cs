@@ -5,8 +5,15 @@ using UnityEngine;
 
 namespace Andrea
 {
+    /// <summary>
+    /// State for idle behavior, currently only used before the player enters an area
+    /// </summary>
     public class StateIdle : EnemyState
     {
+        /// <summary>
+        /// Called each frame
+        /// </summary>
+        /// <returns></returns>
         public override EnemyState Update()
         {
             if (enemy == null) 
@@ -20,7 +27,7 @@ namespace Andrea
             }
             ///// BEHAVIOR:
 
-            Debug.Log("I'm idle");
+            //Debug.Log("I'm idle");
 
 
             ///// TRANSITIONS TO OTHER STATES:

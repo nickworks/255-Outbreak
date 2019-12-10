@@ -5,25 +5,36 @@ using UnityEngine;
 
 namespace Andrea
 {
+    /// <summary>
+    /// State for shooting at the player
+    /// </summary>
     public class StateAttack : EnemyState
     {
-        float timeBetweenShots = 0.5f;
-        float timeUntilNextShot = 0;
+        float timeBetweenShots = 0.2f; // The rate of fire
+        float timeUntilNextShot = 0; // The amount of time until the next shot
 
-        int ammo = 0;
-        int ammoMax = 5;
+        int ammo = 0; // current ammo
+        int ammoMax = 15; // full magazine
 
+
+        /// <summary>
+        /// Called when entering the state
+        /// </summary>
+        /// <param name="enemy"></param>
         public override void OnBegin(EnemyController enemy)
         {
             base.OnBegin(enemy);
 
-            ammo = ammoMax;
+            ammo = ammoMax; //Refills the magazine
         }
+
+        /// <summary>
+        /// Called each frame, calls projectile logic, decrements rate of fire timers and ammo count
+        /// </summary>
+        /// <returns></returns>
         public override EnemyState Update()
         {
             ///// BEHAVIOR:
-
-            Debug.Log("I'm Attacking");
 
             timeUntilNextShot -= Time.deltaTime;
 
@@ -33,6 +44,8 @@ namespace Andrea
                 enemy.ShootProjectile();
                 timeUntilNextShot = timeBetweenShots;
             }
+
+            enemy.RotateTowardPlayer(); //Ensure that the enemy is still looking at the player
 
             ///// TRANSITIONS:
 
