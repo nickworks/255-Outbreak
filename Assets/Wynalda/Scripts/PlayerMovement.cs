@@ -7,33 +7,66 @@ namespace Wynalda
 
     public class PlayerMovement : MonoBehaviour
     {
-        public bool useMouseForAiming = false;
-        public float speed = 5;
-        Camera cam;
+        public bool useMouseForAiming = false; //switch between mouse/keyboard and controller
+        public float speed = 5; // speed of player, set in inspector
+        Camera cam; // camera
+        CharacterController pawn; // character controller
 
         void Start()
         {
             // cam = GameObject.FindObjectOfType<Camera>();
             cam = Camera.main;
+            pawn = GetComponent<CharacterController>();
+        }
+        void FixedUpdate()
+        {
+            Move();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (Game.isPaused) return;
 
+            DetectInputMethod(); // checks for new inputs to auto switch which input is being used.
 
-            Move();
-            if (!useMouseForAiming) RotateWithAnalongStick();
-            if (useMouseForAiming) RotateWithMouse();
+            if (!useMouseForAiming) RotateWithAnalongStick(); //switch to controller
+            if (useMouseForAiming) RotateWithMouse(); // switch to mouse
+        }
+
+        private void DetectInputMethod() //checks for new input to auto switch which input is being used.
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            if (x != 0 || y != 0)
+            {
+                useMouseForAiming = true;
+            }
+
+            float h = Input.GetAxis("Horizontal2");
+            float v = Input.GetAxis("Vertical2");
+
+            float threshold = .25f;
+            Vector2 input = new Vector2(h, v);
+            if (input.sqrMagnitude > threshold * threshold)
+            {
+                //switch to controller aiming...
+                useMouseForAiming = false;
+            }
         }
 
         private void Move()
         {
             float h = Input.GetAxisRaw("Horizontal"); //keyboard movement
             float v = Input.GetAxisRaw("Vertical"); //keyboard movement
+            if (Game.isPaused == false)
+            {
+                Vector3 dir = new Vector3(h, 0, v).normalized;
+                Vector3 delta = dir * speed * Time.fixedDeltaTime;
 
-            Vector3 dir = new Vector3(h, 0, v).normalized;
-            transform.position += dir * speed * Time.deltaTime;
+                pawn.Move(delta);
+            }
         }
 
         private void RotateWithAnalongStick()
@@ -53,7 +86,7 @@ namespace Wynalda
             transform.eulerAngles = new Vector3(0, degs, 0);
         }
 
-        private void RotateWithMouse()
+        private void RotateWithMouse() // mouse movement
         {
             if (cam == null)
             {
@@ -75,8 +108,6 @@ namespace Wynalda
             }
 
         }
-
-
 
     }
 }

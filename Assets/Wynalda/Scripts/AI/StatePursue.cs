@@ -10,7 +10,7 @@ namespace Wynalda
         {
             /////////// BEHAVIOR:
 
-            Debug.Log("im pursuing...");
+          //  Debug.Log("im pursuing...");
 
             //move towards the player...
             Vector3 disToPlayer = enemy.attackTarget.position - enemy.transform.position;
@@ -27,7 +27,7 @@ namespace Wynalda
             //switch to ATTACK
             if(disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
             {
-                return new StateAttack();
+                return new StateAttackSwitcher();
             }
 
             return null;
