@@ -26,14 +26,11 @@ namespace Pattison
             float disSqr = disToPlayer.sqrMagnitude;
 
 
-            // transition: switch to IDLE if player is too far
-            if(disSqr > enemy.pursueDistanceThreshold * enemy.pursueDistanceThreshold) {
-                return new StateIdle();
-            }
-
             // transition: switch to ATTACK if the player is close
             if(disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold) {
-                return new StateAttack();
+                int attackRandomizer = UnityEngine.Random.Range(0,3);
+
+                if(attackRandomizer == 1 || attackRandomizer == 0) return new StateAttack();
             }
 
             return null;
