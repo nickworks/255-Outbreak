@@ -10,7 +10,7 @@ public override EnemyState Update()
         {
             //////// BEHAVIOR:
 
-            Debug.Log("I'm Pursuing");
+            //Debug.Log("I'm Pursuing");
 
             //move towards the player
             Vector3 disToPlayer = enemy.attackTarget.position - enemy.transform.position;
@@ -28,12 +28,16 @@ public override EnemyState Update()
                 return new StateIdle();
             }
 
-            // transition: swithc to ATTACK if the player is close
+            // transition: switch to ATTACK if the player is close
             if(disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
             {
                 return new StateAttack();
             }
 
+            if (enemy.bossBeserk == true)
+            {
+                //return new StateDeathsDoor();
+            }
 
             return null;
         }
