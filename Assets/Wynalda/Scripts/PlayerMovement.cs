@@ -60,11 +60,13 @@ namespace Wynalda
         {
             float h = Input.GetAxisRaw("Horizontal"); //keyboard movement
             float v = Input.GetAxisRaw("Vertical"); //keyboard movement
+            if (Game.isPaused == false)
+            {
+                Vector3 dir = new Vector3(h, 0, v).normalized;
+                Vector3 delta = dir * speed * Time.fixedDeltaTime;
 
-            Vector3 dir = new Vector3(h, 0, v).normalized;
-            Vector3 delta = dir * speed * Time.fixedDeltaTime;
-
-            pawn.Move(delta);
+                pawn.Move(delta);
+            }
         }
 
         private void RotateWithAnalongStick()
@@ -106,8 +108,6 @@ namespace Wynalda
             }
 
         }
-
-
 
     }
 }
