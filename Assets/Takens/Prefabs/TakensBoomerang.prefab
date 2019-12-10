@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   friendly: 1
-  damage: 0.5
+  damage: 0.4
 --- !u!65 &945943759402629556
 BoxCollider:
   m_ObjectHideFlags: 0

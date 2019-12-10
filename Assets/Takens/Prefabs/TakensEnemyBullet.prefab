@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4805428460583431567}
   - component: {fileID: 8742960821716858647}
   - component: {fileID: 5699987967457717346}
+  - component: {fileID: 9091255061645664448}
   m_Layer: 0
   m_Name: TakensEnemyBullet
   m_TagString: Untagged
@@ -105,5 +106,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31f34dfbaf59e749b8369b224231d27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 35
   lifespan: 3
+--- !u!114 &9091255061645664448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938205449115352633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778f1d73e244ac248b5e9d78c5452f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendly: 0
+  damage: 10
