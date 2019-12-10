@@ -6,8 +6,8 @@ namespace Powers {
     public class Zone : Pattison.Zone {
 
         new static public ZoneInfo info = new ZoneInfo() {
-            zoneName = "",
-            creator = "",
+            zoneName = "Evil Stone Man",
+            creator = "Aaron Powers",
             level = "PowersScene"
         };
 
