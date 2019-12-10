@@ -6,13 +6,18 @@ namespace Caughman
 {
     public class PlayerMovement : MonoBehaviour
     {
+        /// <summary>
+        /// Player is Using Mouse to control the game
+        /// </summary>
         public bool useMouseForAiming = true;
 
         /// <summary>
         /// Measurment of Meters per second the player will move
         /// </summary>
         public float speed = 7.5f;
-
+        /// <summary>
+        /// The Character being controlled by the player
+        /// </summary>
         CharacterController pawn;
 
         /// <summary>
@@ -20,7 +25,7 @@ namespace Caughman
         /// </summary>
         Camera cam;
 
-        // Start is called before the first frame update
+     
         void Start()
         {
             //cam = GameObject.FindObjectOfType<Camera>()
@@ -33,7 +38,7 @@ namespace Caughman
             Move();
         }
 
-        // Update is called once per frame
+        
         void Update()
         {
             if (Game.isPaused == true) return;
@@ -45,6 +50,9 @@ namespace Caughman
 
         }
 
+        /// <summary>
+        /// Detects if the player is using Mouse and Keyboard, or Xbox One Controller
+        /// </summary>
         private void DetectInputMethod()
         {
             float x = Input.GetAxis("Mouse X");
@@ -69,6 +77,9 @@ namespace Caughman
             }
         }
 
+        /// <summary>
+        /// Rotates the shooting end of the Player to point to the mouse
+        /// </summary>
         private void RotateWithMouse()
         {
             if (cam == null)
@@ -93,6 +104,9 @@ namespace Caughman
             }
         }
 
+        /// <summary>
+        /// Rotates the shooting end of the Player in relation to the Controllers Right Stick Direction
+        /// </summary>
         private void RotateWithAnalogStick()
         {
             //horizontal input of controller left stick
@@ -112,6 +126,9 @@ namespace Caughman
             transform.eulerAngles = new Vector3(0, degrees, 0);
         }
 
+        /// <summary>
+        /// Player Moves Horizontal and Vertical
+        /// </summary>
         private void Move()
         {
             //horizontal input
@@ -125,6 +142,11 @@ namespace Caughman
             //Players movment in meters per second
             Vector3 delta = dir * speed * Time.deltaTime;
             pawn.Move(delta);
+        }
+
+        void Hit()
+        {
+            
         }
 
         void Die()

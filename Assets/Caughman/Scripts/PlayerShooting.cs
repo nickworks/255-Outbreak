@@ -17,30 +17,34 @@ namespace Caughman
         }
 
         /// <summary>
-        /// Our Bullet Prefab
+        /// Peashooter Bullet type
         /// </summary>
         public GameObject basicBullet;
+        /// <summary>
+        /// Flamethrower Bullet type
+        /// </summary>
         public GameObject flameBullet;
+        /// <summary>
+        /// Tri Shot Bullet type
+        /// </summary>
         public GameObject shotgunBullet;
+        /// <summary>
+        /// Where Bullets will spawn
+        /// </summary>
         public Transform projectileSpawnPoint;
         /// <summary>
         /// State machine to tell what weapons is being used
         /// </summary>
         public Weapontype currentWeapon = Weapontype.PeaShooter;
-
+        /// <summary>
+        /// Cool Down Timer for shooting 
+        /// </summary>
         float cooldownUntilNextBullet = 0;
         /// <summary>
         /// Whatever our "CycleWeapon" Axis value was one frame ago.
         /// </summary>
         int previousCycleDir = 0;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }//End Start
-
-        // Update is called once per frame
+      
         void Update()
         {
             CycleWeapons();
@@ -49,6 +53,9 @@ namespace Caughman
             if (Input.GetButton("Fire1")) Shoot();
         }//End Update
 
+        /// <summary>
+        /// Allows player choose which state of gun they want to use
+        /// </summary>
         private void CycleWeapons()
         {
 
@@ -80,6 +87,9 @@ namespace Caughman
             
         }
 
+        /// <summary>
+        /// Checks which state the player is in and fires the correct bullets based on state
+        /// </summary>
         void Shoot()
         {
             switch (currentWeapon)
@@ -99,6 +109,9 @@ namespace Caughman
             }
         }//End Shoot
 
+        /// <summary>
+        /// Fires regular projectiles with average range and power
+        /// </summary>
         private void ShootPeashooter()
         {
             if (!Input.GetButtonDown("Fire1")) return;//Must release Fire1 to keep shooting
@@ -106,6 +119,9 @@ namespace Caughman
             Instantiate(basicBullet, projectileSpawnPoint.position, transform.rotation);
         }//End ShootPeaShooter
 
+        /// <summary>
+        /// Fires multiple mini bullets to deal close up damage
+        /// </summary>
         private void ShootFlamethrower()
         {
             if (cooldownUntilNextBullet > 0) return;
@@ -115,6 +131,9 @@ namespace Caughman
             cooldownUntilNextBullet = 0.1f;
         }//End AutoRifle
 
+        /// <summary>
+        /// Fires a 3 bullet spread that deals fast massive damage
+        /// </summary>
         private void ShootTripleShot()
         {
             if (!Input.GetButtonDown("Fire1")) return;//Must release Fire1 to keep shooting

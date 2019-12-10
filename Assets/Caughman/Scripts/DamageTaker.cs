@@ -6,7 +6,9 @@ namespace Caughman
 {
     public class DamageTaker : MonoBehaviour
     {
-
+        /// <summary>
+        /// Maximum health an object has
+        /// </summary>
         public float health = 100;
 
 
@@ -17,6 +19,9 @@ namespace Caughman
         public void TakeDamage(float amount)
         {
             health -= amount;
+            //Broadcasts the Beserk function to other scripts
+            if (health <= 1000) gameObject.BroadcastMessage("Berserk");
+            //Broadcasts the Die function to other scripts
             if (health <= 0)gameObject.BroadcastMessage("Die");
         }//End TakeDamage
         
