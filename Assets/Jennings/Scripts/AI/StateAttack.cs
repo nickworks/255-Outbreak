@@ -5,12 +5,13 @@ using UnityEngine;
 namespace Jennings {
     public class StateAttack : EnemyState {
 
-        float timeBetweenShots = 0.5f;
-        float timeUntilNextShot = 0;
+        float timeBetweenShots = 0.5f; // The given time between 2 shots
+        float timeUntilNextShot = 0; // the given time until the next shot
 
         int ammo = 0;
         int ammoMax = 5;
 
+        // Begins attacking until run out of ammo
         public override void OnBegin(EnemyController enemy)
         {
             base.OnBegin(enemy);
@@ -21,8 +22,8 @@ namespace Jennings {
 
         public override EnemyState Update()
         {
-            // BEHAVIOR:
-            Debug.Log("I'm attacking...");
+            // BEHAVIOR: Begin Attacking
+            //Debug.Log("I'm attacking...");
 
 
             if (timeUntilNextShot > 0) timeUntilNextShot -= Time.deltaTime;

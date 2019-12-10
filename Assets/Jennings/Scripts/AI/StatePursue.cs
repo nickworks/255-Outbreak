@@ -7,11 +7,14 @@ namespace Jennings {
         public override EnemyState Update()
         {
             // BEHAVIOR:
-            Debug.Log("I'm pursuing...");
+            //Debug.Log("I'm pursuing...");
 
             // Move towards the player...
 
             Vector3 disToPlayer = enemy.attackTarget.position - enemy.transform.position;
+
+            //if (enemy.transform.position == null) Game.GameOver(); Attempt to get GameOver to trigger although it still fails
+
             Vector3 dirToPlayer = disToPlayer.normalized;
 
             enemy.velocity += dirToPlayer * enemy.acceleration * Time.deltaTime;
@@ -27,10 +30,12 @@ namespace Jennings {
             }
 
             // transition: switch to ATTACK if the player is close
-            if (disSqr > enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
+            if (disSqr < enemy.attackDistanceThreshold * enemy.attackDistanceThreshold)
             {
                 return new StateAttack();
             }
+
+
 
                 return null;
         }

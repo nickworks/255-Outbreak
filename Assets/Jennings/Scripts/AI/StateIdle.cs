@@ -10,15 +10,16 @@ namespace Jennings {
             if (enemy.attackTarget == null) return null; // Enemy has nothing it wants to attack
             // BEHAVIOR:
 
-            Debug.Log("I'm idling...");
+            //Debug.Log("I'm idling...");
 
             // TRANSITIONS TO OTHER STATES:
-
+            // Specifically pursue
             Vector3 disToTarget = enemy.transform.position - enemy.attackTarget.position;
 
             if(disToTarget.sqrMagnitude < enemy.pursueDistanceThreshold * enemy.pursueDistanceThreshold)
             {
                 return new StatePursue();
+
             }
 
             return null;
