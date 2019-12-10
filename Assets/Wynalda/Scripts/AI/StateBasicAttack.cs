@@ -6,11 +6,11 @@ namespace Wynalda
 {
     public class StateBasicAttack : EnemyState
     {
-        float timeBetweenShots = 0.5f;
+        float timeBetweenShots = 0.1f;
         float timeUntilNextShot = 0;
 
         int ammo = 0;
-        int ammoMax = 5;
+        int ammoMax = 10;
 
         public override void OnBegin(EnemyController enemy)
         {

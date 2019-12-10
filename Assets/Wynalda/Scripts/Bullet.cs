@@ -7,7 +7,7 @@ namespace Wynalda
     public class Bullet : MonoBehaviour
     {
         public float speed = 10;
-        public float lifespan = 3;
+        public float lifespan = 7;
         public float damageAmount = 10;
         float age = 0;
 

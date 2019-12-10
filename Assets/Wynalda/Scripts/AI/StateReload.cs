@@ -6,7 +6,7 @@ namespace Wynalda
 {
     public class StateReload : EnemyState
     {
-        float howLongReloadingTakes = 5;
+        float howLongReloadingTakes = 2;
         float timeLeftUntilReloaded = 0;
 
         public override void OnBegin(EnemyController enemy)

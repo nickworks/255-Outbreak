@@ -82,7 +82,7 @@ namespace Wynalda
         {
             if (cooldownUntilNextBullet > 0) return;
             Instantiate(autoBullet, projectileSpawnPoint.position, transform.rotation);
-            cooldownUntilNextBullet = 0.1f;
+            cooldownUntilNextBullet = 0.3f;
         }
         private void ShootTripleShot()
         {
@@ -90,7 +90,7 @@ namespace Wynalda
 
             float yaw = transform.eulerAngles.y;
 
-            float spread = 10;
+            float spread = 7;
 
             Instantiate(tripleBullet, projectileSpawnPoint.position, transform.rotation);
             Instantiate(tripleBullet, projectileSpawnPoint.position, Quaternion.Euler(0, yaw-spread, 0));
