@@ -19,10 +19,20 @@ namespace Breu
 
         Vector3 Velocity = Vector3.zero;
 
+        public GameObject MainBody;
+
+        private Renderer Rend;
+        public Material AttackMaterial;
+        public Material DefaultMat;
+
         // Start is called before the first frame update
         void Start()
         {
             Velocity = transform.right;
+            if(MainBody!= null)
+            {
+                Rend = MainBody.GetComponent<Renderer>();
+            }
         }
 
         /// <summary>
@@ -30,13 +40,20 @@ namespace Breu
         /// </summary>
         public void Punch()
         {
-
+            if (Rend!= null)
+            {
+                Rend.material = AttackMaterial;
+            }
             transform.position += Velocity * PunchSpeed * Time.deltaTime;
             CurrentDuration += Time.deltaTime;
             if (CurrentDuration >= PunchDuration)
             {
                 CurrentDuration = 0;
                 FinishedPunch = true;
+                if (Rend != null)
+                {
+                    Rend.material = DefaultMat;
+                }
             }
         }
 

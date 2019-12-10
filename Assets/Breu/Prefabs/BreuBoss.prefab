@@ -616,6 +616,9 @@ MonoBehaviour:
   PunchSpeed: 50
   Damage: 1
   PunchDuration: 1
+  MainBody: {fileID: 5306462522798086911}
+  AttackMaterial: {fileID: 2100000, guid: caa68caeedf826e489bade9b236bd512, type: 2}
+  DefaultMat: {fileID: 2100000, guid: e834d3759c13603479d7afbe714c8bce, type: 2}
 --- !u!1 &5306462523023252289
 GameObject:
   m_ObjectHideFlags: 0

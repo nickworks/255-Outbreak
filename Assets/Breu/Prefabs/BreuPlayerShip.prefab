@@ -759,7 +759,7 @@ MonoBehaviour:
   Bullet05Melee: {fileID: 7246167323520445333, guid: 7864aa65885dd874e91528940fc64beb,
     type: 3}
   BulletSpawn: {fileID: 2078505863958189487}
-  currentWeapon: 0
+  currentWeapon: 2
   CooldownToShoot: 0
   MaxCooldown: 0
 --- !u!114 &7096236115896771658
